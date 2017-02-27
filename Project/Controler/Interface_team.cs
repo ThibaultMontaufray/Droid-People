@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Droid_Team
+namespace Droid_People
 {
     public class Interface_team
     {
@@ -22,15 +22,15 @@ namespace Droid_Team
 
         #region Action
         [Description("french[ajouger.membre(membre)];english[add.member(member)]")]
-        public static void ACTION_130_add_member(Member member)
+        public static void ACTION_130_add_member(Person member)
         {
 
         }
-        public static void ACTION_131_remove_member(Member member)
+        public static void ACTION_131_remove_member(Person member)
         {
 
         }
-        public static void ACTION_132_modify_member(Member member)
+        public static void ACTION_132_modify_member(Person member)
         {
 
         }

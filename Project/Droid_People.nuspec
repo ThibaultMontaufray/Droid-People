@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Droid_People</id>
+    <version>1.0.0</version>
+    <title>Droid_People</title>
+    <authors>Thibault MONTAUFRAY</authors>
+    <owners>Servodroid</owners>
+    <licenseUrl>https://raw.githubusercontent.com/ThibaultMontaufray/Tools4Libraries/master/License</licenseUrl>
+    <projectUrl>https://github.com/ThibaultMontaufray/Droid_People</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/ThibaultMontaufray/Tools4Libraries/master/ManagersDevComponents/servodroidIconColor.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Manage user for applications. Can scan internet to have some more details</description>
+    <copyright>Copyright 2017</copyright>
+    <tags>Servodroid people google image contact person</tags>
+	<dependencies>
+		<group targetFramework="net40">
+			<dependency id="Droid_Image" version="1.0.1" />
+			<dependency id="Droid_Web" version="1.0.4" />
+			<dependency id="Facebook" version="7.0.6" />
+			<dependency id="jQuery" version="2.1.1" />
+			<dependency id="Newtonsoft.Json" version="9.0.1" />
+			<dependency id="officeribbon" version="3.5.8.4" />
+			<dependency id="OpenCvSharp-AnyCPU" version="2.4.10.20160316" />
+			<dependency id="OpenTK" version="1.1.2349.61993" />
+			<dependency id="OpenTK.GLControl" version="1.1.2349.61993" />
+			<dependency id="QRCoder" version="1.1.7" />
+			<dependency id="SampleDependency" version="1.0.0" />
+			<dependency id="Tools4Libraries" version="1.0.17" />
+			<dependency id="ZedGraph" version="5.1.7" />
+			<dependency id="ZXing" version="2.1.1" />
+		</group>
+	</dependencies>
+  </metadata>
+  <files>
+    <file src="lib\**\*.exe" target="lib" />
+    <file src="lib\**\*.dll" target="lib" />
+    <file src="lib\**\*.xml" target="lib" />
+    <file src="lib\**\*.config" target="lib" />
+  </files>
+</package>

@@ -1,4 +1,4 @@
-﻿namespace Droid_Team
+﻿namespace Droid_People
 {
     partial class Demo
     {
@@ -28,20 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Demo));
             this.SuspendLayout();
             // 
-            // Form1
+            // Demo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 711);
-            this.Name = "Form1";
+            this.ClientSize = new System.Drawing.Size(562, 167);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "Demo";
             this.Text = "Team-droid";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private View.CreatePerson createPerson;
     }
 }
 

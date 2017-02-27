@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Droid_Team
+namespace Droid_People
 {
     public class Activities
     {
