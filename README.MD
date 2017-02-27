@@ -2,7 +2,7 @@
 
 Manage a contact list with web research to have more details.
 
-[![Version Status](https://img.shields.io/nuget/v/Droid_People.svg)](https://www.nuget.org/packages/Droid_People/)
+[![Version Status](https://img.shields.io/nuget/v/Droid-People.svg)](https://www.nuget.org/packages/Droid_People/)
 [![License](https://img.shields.io/github/license/brandondahler/Data.HashFunction.svg)](https://raw.githubusercontent.com/ThibaultMontaufray/Tools4Libraries/master/License)
 [![Build Status](https://travis-ci.org/ThibaultMontaufray/Droid-People.svg?branch=master)](https://travis-ci.org/ThibaultMontaufray/Droid-People) 
 [![Build status](https://ci.appveyor.com/api/projects/status/sidmejyg6biq7gkr?svg=true)](https://ci.appveyor.com/project/ThibaultMontaufray/Droid-People)
