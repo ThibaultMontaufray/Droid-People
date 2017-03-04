@@ -37,15 +37,27 @@ namespace Droid_People
         #endregion
 
         #region Methods public
-        public static Person Search(string keyWords, string workingDirectory)
+        public static Person Search(string keyWords)
         {
-            _currentPerson = new Person(workingDirectory);
+            _currentPerson = new Person();
 
-            AnalyseKeyWorkds(keyWords, workingDirectory);
+            AnalyseKeyWorkds(keyWords);
             SearchFacebook();
             SearchLinkedIn();
             SearchTwitter();
             SearchGoogle(keyWords);
+
+            return _currentPerson;
+        }
+        public static Person Search(string firstname, string familyname)
+        {
+            _currentPerson = new Person();
+
+            AnalyseKeyWorkds(firstname, familyname);
+            SearchFacebook();
+            SearchLinkedIn();
+            SearchTwitter();
+            SearchGoogle(firstname + " " + familyname);
 
             return _currentPerson;
         }
@@ -60,7 +72,7 @@ namespace Droid_People
         #endregion
 
         #region Methods private
-        private static void AnalyseKeyWorkds(string keyWords, string workingDirectory)
+        private static void AnalyseKeyWorkds(string keyWords)
         {
             string[] tab = keyWords.Split(' ');
             List<FirstName> firstnames;
@@ -81,6 +93,20 @@ namespace Droid_People
                         _currentPerson.FirstName = firstnames.First();
                         _currentPerson.FamilyName = tab[0];
                     }
+                }
+            }
+        }
+        private static void AnalyseKeyWorkds(string firstname, string familyname)
+        {
+            _currentPerson.FamilyName = familyname;
+            List<FirstName> firstnames;
+            
+            if (!string.IsNullOrWhiteSpace(firstname))
+            { 
+                firstnames = _firstNames.Where(f => f.Firstname.ToLower().Equals(firstname.ToLower())).ToList();
+                if (!string.IsNullOrEmpty(firstname) && firstnames.Count > 0)
+                {
+                    _currentPerson.FirstName = firstnames.First();
                 }
             }
         }

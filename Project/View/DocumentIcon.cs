@@ -55,6 +55,13 @@ namespace Droid_People
                 labelSize.Text = LengthToString();
                 labelType.Text = !string.IsNullOrEmpty(fi.Extension) ? fi.Extension.ToLower().Replace(".", string.Empty) + " file" : string.Empty;
             }
+            else
+            {
+                labelNum.Text = "00";
+                labelDocName.Text = "...";
+                labelSize.Text = string.Empty;
+                labelType.Text = string.Empty;
+            }
             RefreshAvailable();
         }
         private string LengthToString()
@@ -98,7 +105,7 @@ namespace Droid_People
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                _currentDocument = Path.Combine(ofd.FileName);
+                _currentDocument = ofd.FileName;
                 if (DocumentChanged != null) { DocumentChanged(); }
             }
 

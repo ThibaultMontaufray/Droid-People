@@ -41,17 +41,17 @@ namespace Droid_People
         private string _comment;
         private string _mail;
         private List<string> _documents;
-        private string _workingDirectory;
+        //private string _workingDirectory;
         private List<string> _serializedPictures;
         #endregion
 
         #region Properties
-        [JsonProperty(PropertyName = "workingDirectory")]
-        public string WorkingDirectory
-        {
-            get { return _workingDirectory; }
-            set { _workingDirectory = value; }
-        }
+        //[JsonProperty(PropertyName = "workingDirectory")]
+        //public string WorkingDirectory
+        //{
+        //    get { return _workingDirectory; }
+        //    set { _workingDirectory = value; }
+        //}
         [JsonProperty(PropertyName = "documents")]
         public List<string> Documents
         {
@@ -237,6 +237,21 @@ namespace Droid_People
         #endregion
 
         #region Constructor
+        //public Person()
+        //{
+        //    //Random rand = new Random((int)DateTime.Now.Ticks);
+        //    //_id = string.Format("people.{0}-{1}-{2}", rand.Next(), (int)DateTime.Now.Ticks, rand.Next());
+
+        //    _gender = GENDER.UNKNOW;
+        //    _chiefs = new List<Person>();
+        //    _teamMembers = new List<Person>();
+        //    _serializedPictures = new List<string>();
+        //    _activities = new List<Droid_People.Activities>();
+        //    _projects = new List<Project>();
+        //    _skills = new List<Skill>();
+        //    _documents = new List<string>();
+        //    //_workingDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Servodroid\Droid-People", _id);
+        //}
         public Person()
         {
             Random rand = new Random((int)DateTime.Now.Ticks);
@@ -245,20 +260,27 @@ namespace Droid_People
             _gender = GENDER.UNKNOW;
             _chiefs = new List<Person>();
             _teamMembers = new List<Person>();
-            //_pictures = new List<Image>();
             _serializedPictures = new List<string>();
             _activities = new List<Droid_People.Activities>();
             _projects = new List<Project>();
             _skills = new List<Skill>();
             _documents = new List<string>();
-            _workingDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Servodroid\Droid-People", _id);
+            //_workingDirectory = Path.Combine(workingDirectory, _id);
         }
-        public Person(string workingDirectory)
+        public Person(string firstname, string familyname)
         {
             Random rand = new Random((int)DateTime.Now.Ticks);
             _id = string.Format("people.{0}-{1}-{2}", rand.Next(), (int)DateTime.Now.Ticks, rand.Next());
 
-            _gender = GENDER.UNKNOW;
+            Person p = PeopleControler.Search(firstname, familyname);
+            Import(p, this);
+        }
+        public Person(string pathFile)
+        {
+            Random rand = new Random((int)DateTime.Now.Ticks);
+            _id = string.Format("people.{0}-{1}-{2}", rand.Next(), (int)DateTime.Now.Ticks, rand.Next());
+
+            //_gender = GENDER.UNKNOW;
             _chiefs = new List<Person>();
             _teamMembers = new List<Person>();
             //_pictures = new List<Image>();
@@ -267,24 +289,8 @@ namespace Droid_People
             _projects = new List<Project>();
             _skills = new List<Skill>();
             _documents = new List<string>();
-            _workingDirectory = Path.Combine(workingDirectory, _id);
-        }
-        public Person(string workingDirectory, string pathFile)
-        {
-            Random rand = new Random((int)DateTime.Now.Ticks);
-            _id = string.Format("people.{0}-{1}-{2}", rand.Next(), (int)DateTime.Now.Ticks, rand.Next());
+            //_workingDirectory = Path.Combine(workingDirectory, _id);
 
-            _gender = GENDER.UNKNOW;
-            _chiefs = new List<Person>();
-            _teamMembers = new List<Person>();
-            //_pictures = new List<Image>();
-            _serializedPictures = new List<string>();
-            _activities = new List<Droid_People.Activities>();
-            _projects = new List<Project>();
-            _skills = new List<Skill>();
-            _documents = new List<string>();
-            _workingDirectory = Path.Combine(workingDirectory, _id);
-            
             LoadPerson(pathFile);
         }
         #endregion
@@ -309,34 +315,58 @@ namespace Droid_People
             p._projects = _projects;
             p._skills = _skills;
             p._teamMembers = _teamMembers;
-            p._workingDirectory = _workingDirectory;
+            //p._workingDirectory = _workingDirectory;
             return p;
         }
-        public void Save()
+        public void Save(string path)
         {
             //SaveFile(GenerateXml());
-            SaveFile();
+            SaveFile(path);
         }
-        public void AddDocument(ref string document)
+        public void AddDocument(string workingDirectory, ref string document)
         {
             FileInfo documentFi = new FileInfo(document);
 
-            if (Path.Combine(_workingDirectory, documentFi.Name) != documentFi.FullName)
+            if (Path.Combine(workingDirectory, _id, documentFi.Name) != documentFi.FullName)
             { 
-                if (!Directory.Exists(_workingDirectory)) Directory.CreateDirectory(_workingDirectory);
-                if (File.Exists(Path.Combine(_workingDirectory, documentFi.Name))) { File.Delete(Path.Combine(_workingDirectory, documentFi.Name)); }
-                File.Copy(documentFi.FullName, Path.Combine(_workingDirectory, documentFi.Name));
-                document = Path.Combine(_workingDirectory, documentFi.Name);
-                _documents.Add(document);
+                if (!Directory.Exists(Path.Combine(workingDirectory, _id))) Directory.CreateDirectory(Path.Combine(workingDirectory, _id));
+                if (File.Exists(Path.Combine(workingDirectory, _id, documentFi.Name))) { File.Delete(Path.Combine(workingDirectory, _id, documentFi.Name)); }
+                File.Copy(documentFi.FullName, Path.Combine(workingDirectory, _id, documentFi.Name));
+                //document = Path.Combine(workingDirectory, _id, documentFi.Name);
+                _documents.Add(documentFi.Name);
             }
-            Save();
+            Save(workingDirectory);
         }
-        public void RemoveDocument(string document)
+        public void RemoveDocument(string workingDirectory, string document)
         {
             File.Delete(document);
-            _documents.Remove(document);
-            Save();
+            _documents.Remove(Path.GetFileName(document));
+            Save(workingDirectory);
         }
+
+        public static Person GetUserByText(object o, List<Person> persons)
+        {
+            if (o == null) return null;
+            string personText = o.ToString();
+
+            foreach (Person person in persons)
+            {
+                if (personText.Equals(string.Format("{0} {1}", person.FirstName.Firstname, person.FamilyName)))
+                {
+                    return person;
+                }
+            }
+            return null;
+        }
+        public static Person GetPersonFromId(string id, List<Person> persons)
+        {
+            var lst = persons.Where(u => u.Id.Equals(id)).ToList();
+            if (lst.Count > 0) return lst.First();
+            else return null;
+        }
+        #endregion
+
+        #region Methods private
         private void Import(Person source, Person target)
         {
             target._activities = source._activities;
@@ -356,13 +386,10 @@ namespace Droid_People
             target._projects = source._projects;
             target._skills = source._skills;
             target._teamMembers = source._teamMembers;
-            target._workingDirectory = source._workingDirectory;
-            
+            //target._workingDirectory = _workingDirectory;
+
             source = null;
         }
-        #endregion
-
-        #region Methods private
         private void LoadPerson(string pathFile)
         {
             if (File.Exists(pathFile))
@@ -374,14 +401,37 @@ namespace Droid_People
                     if (data != null) { Import(data, this); }
                 }
             }
-        }
-        private void SaveFile()
-        {
-            if (!Directory.Exists(_workingDirectory))
+            else if (Directory.Exists(pathFile))
             {
-                Directory.CreateDirectory(_workingDirectory);
+                foreach (string file in Directory.GetFiles(pathFile))
+                {
+                    if (Path.GetFileName(file).StartsWith("people.") && Path.GetExtension(file).Equals(".xml"))
+                    {
+                        using (StreamReader sr = new StreamReader(file))
+                        {
+                            var json = sr.ReadToEnd();
+                            var data = JsonConvert.DeserializeObject<Person>(json);
+                            if (data != null)
+                            {
+                                Import(data, this);
+                            }
+                        }
+                        break;
+                    }
+                }
             }
-            string filePath = Path.Combine(_workingDirectory, string.Format("{0}.xml", _id));
+        }
+        private void SaveFile(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            if (!Directory.Exists(Path.Combine(path, _id)))
+            {
+                Directory.CreateDirectory(Path.Combine(path, _id));
+            }
+            string filePath = Path.Combine(path, string.Format("{0}//{0}.xml", _id));
             using (StreamWriter sw = new StreamWriter(filePath, false))
             {
                 sw.Write(JsonConvert.SerializeObject(this));
@@ -427,13 +477,13 @@ namespace Droid_People
             }
             return serializedObject;
         }
-        private void SaveFileXml(string xmlObject)
+        private void SaveFileXml(string workingDirectory, string xmlObject)
         {
-            if (!Directory.Exists(_workingDirectory))
+            if (!Directory.Exists(Path.Combine(workingDirectory, _id)))
             {
-                Directory.CreateDirectory(_workingDirectory);
+                Directory.CreateDirectory(Path.Combine(workingDirectory, _id));
             }
-            string filePath = Path.Combine(_workingDirectory, string.Format("{0}.xml", _id));
+            string filePath = Path.Combine(workingDirectory, _id, string.Format("{0}.xml", _id));
             using (StreamWriter sw = new StreamWriter(filePath, false))
             {
                 sw.Write(xmlObject);

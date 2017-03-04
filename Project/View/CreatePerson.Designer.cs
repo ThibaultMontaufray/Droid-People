@@ -1,4 +1,4 @@
-﻿namespace Droid_People.View
+﻿namespace Droid_People
 {
     partial class CreatePerson
     {

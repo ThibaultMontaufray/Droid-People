@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Droid_People.View
+namespace Droid_People
 {
     public delegate void SearchPersonEventHandler();
     public partial class CreatePerson : UserControl
@@ -38,6 +38,10 @@ namespace Droid_People.View
         #endregion
 
         #region Methods public
+        public void ChangeLanguage()
+        {
+
+        }
         #endregion
 
         #region Methods private
@@ -46,9 +50,9 @@ namespace Droid_People.View
         #region Event
         private void button1_Click(object sender, EventArgs e)
         {
-            _currentPerson = PeopleControler.Search(textBoxKeyWords.Text, _workingDirectory);
-            _currentPerson.Save();
-            if (ResearchCompleted != null) ResearchCompleted();
+            //_currentPerson = PeopleControler.Search(textBoxKeyWords.Text, _workingDirectory);
+            //_currentPerson.Save(_intPeo.);
+            //if (ResearchCompleted != null) ResearchCompleted();
         }
         private void buttonOpen_Click(object sender, EventArgs e)
         {

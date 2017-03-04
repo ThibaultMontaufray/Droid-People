@@ -38,11 +38,11 @@
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.labelFullName = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelTitleName = new System.Windows.Forms.Label();
+            this.labelTitleLastName = new System.Windows.Forms.Label();
+            this.labelTitleGender = new System.Windows.Forms.Label();
+            this.labelTitleNationality = new System.Windows.Forms.Label();
+            this.labelTitleActivity = new System.Windows.Forms.Label();
             this.labelFamilyName = new System.Windows.Forms.Label();
             this.labelFirstName = new System.Windows.Forms.Label();
             this.labelGender = new System.Windows.Forms.Label();
@@ -63,16 +63,15 @@
             this.textBoxActivity = new System.Windows.Forms.TextBox();
             this.comboBoxGender = new System.Windows.Forms.ComboBox();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.labelTitleMail = new System.Windows.Forms.Label();
+            this.labelTitleNickName = new System.Windows.Forms.Label();
+            this.labelTitleBirthday = new System.Windows.Forms.Label();
             this.labelMail = new System.Windows.Forms.Label();
             this.labelNickname = new System.Windows.Forms.Label();
             this.labelBirthday = new System.Windows.Forms.Label();
             this.textBoxComment = new System.Windows.Forms.TextBox();
             this.textBoxMail = new System.Windows.Forms.TextBox();
             this.textBoxNickName = new System.Windows.Forms.TextBox();
-            this.textBoxBirthday = new System.Windows.Forms.TextBox();
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.documentPreviewComment = new Droid_People.DocumentPreview();
             this.documentPreview = new Droid_People.DocumentPreview();
@@ -80,6 +79,7 @@
             this.documentIcon2 = new Droid_People.DocumentIcon();
             this.documentIcon3 = new Droid_People.DocumentIcon();
             this.documentIcon4 = new Droid_People.DocumentIcon();
+            this.dateTimePickerBirthday = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -193,65 +193,65 @@
             this.labelFullName.Text = "NAME";
             this.labelFullName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
+            // labelTitleName
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(210, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 16);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Name";
+            this.labelTitleName.AutoSize = true;
+            this.labelTitleName.BackColor = System.Drawing.Color.Transparent;
+            this.labelTitleName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitleName.ForeColor = System.Drawing.Color.White;
+            this.labelTitleName.Location = new System.Drawing.Point(210, 49);
+            this.labelTitleName.Name = "labelTitleName";
+            this.labelTitleName.Size = new System.Drawing.Size(49, 16);
+            this.labelTitleName.TabIndex = 8;
+            this.labelTitleName.Text = "Name";
             // 
-            // label2
+            // labelTitleLastName
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(210, 75);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 16);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Last name";
+            this.labelTitleLastName.AutoSize = true;
+            this.labelTitleLastName.BackColor = System.Drawing.Color.Transparent;
+            this.labelTitleLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitleLastName.ForeColor = System.Drawing.Color.White;
+            this.labelTitleLastName.Location = new System.Drawing.Point(210, 75);
+            this.labelTitleLastName.Name = "labelTitleLastName";
+            this.labelTitleLastName.Size = new System.Drawing.Size(79, 16);
+            this.labelTitleLastName.TabIndex = 9;
+            this.labelTitleLastName.Text = "Last name";
             // 
-            // label3
+            // labelTitleGender
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(210, 102);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 16);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Gender";
+            this.labelTitleGender.AutoSize = true;
+            this.labelTitleGender.BackColor = System.Drawing.Color.Transparent;
+            this.labelTitleGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitleGender.ForeColor = System.Drawing.Color.White;
+            this.labelTitleGender.Location = new System.Drawing.Point(210, 102);
+            this.labelTitleGender.Name = "labelTitleGender";
+            this.labelTitleGender.Size = new System.Drawing.Size(59, 16);
+            this.labelTitleGender.TabIndex = 10;
+            this.labelTitleGender.Text = "Gender";
             // 
-            // label4
+            // labelTitleNationality
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(210, 128);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 16);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Country";
+            this.labelTitleNationality.AutoSize = true;
+            this.labelTitleNationality.BackColor = System.Drawing.Color.Transparent;
+            this.labelTitleNationality.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitleNationality.ForeColor = System.Drawing.Color.White;
+            this.labelTitleNationality.Location = new System.Drawing.Point(210, 128);
+            this.labelTitleNationality.Name = "labelTitleNationality";
+            this.labelTitleNationality.Size = new System.Drawing.Size(82, 16);
+            this.labelTitleNationality.TabIndex = 11;
+            this.labelTitleNationality.Text = "Nationality";
             // 
-            // label5
+            // labelTitleActivity
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(210, 154);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(94, 16);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Main activity";
+            this.labelTitleActivity.AutoSize = true;
+            this.labelTitleActivity.BackColor = System.Drawing.Color.Transparent;
+            this.labelTitleActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitleActivity.ForeColor = System.Drawing.Color.White;
+            this.labelTitleActivity.Location = new System.Drawing.Point(210, 154);
+            this.labelTitleActivity.Name = "labelTitleActivity";
+            this.labelTitleActivity.Size = new System.Drawing.Size(94, 16);
+            this.labelTitleActivity.TabIndex = 12;
+            this.labelTitleActivity.Text = "Main activity";
             // 
             // labelFamilyName
             // 
@@ -473,10 +473,10 @@
             this.textBoxFirstname.Size = new System.Drawing.Size(245, 20);
             this.textBoxFirstname.TabIndex = 34;
             // 
-            // textBoxCountry
+            // textBoxNationality
             // 
             this.textBoxNationality.Location = new System.Drawing.Point(350, 127);
-            this.textBoxNationality.Name = "textBoxCountry";
+            this.textBoxNationality.Name = "textBoxNationality";
             this.textBoxNationality.Size = new System.Drawing.Size(245, 20);
             this.textBoxNationality.TabIndex = 36;
             // 
@@ -500,45 +500,46 @@
             // 
             this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
             this.imageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList.Images.SetKeyName(0, "shadow_man");
-            this.imageList.Images.SetKeyName(1, "shadow_woman");
-            this.imageList.Images.SetKeyName(2, "backgrounPeople");
+            this.imageList.Images.SetKeyName(0, "backgrounPeople");
+            this.imageList.Images.SetKeyName(1, "shadow_man");
+            this.imageList.Images.SetKeyName(2, "shadow_backpacker");
+            this.imageList.Images.SetKeyName(3, "shadow_woman");
             // 
-            // label10
+            // labelTitleMail
             // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(616, 49);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(37, 16);
-            this.label10.TabIndex = 39;
-            this.label10.Text = "Mail";
+            this.labelTitleMail.AutoSize = true;
+            this.labelTitleMail.BackColor = System.Drawing.Color.Transparent;
+            this.labelTitleMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitleMail.ForeColor = System.Drawing.Color.White;
+            this.labelTitleMail.Location = new System.Drawing.Point(616, 49);
+            this.labelTitleMail.Name = "labelTitleMail";
+            this.labelTitleMail.Size = new System.Drawing.Size(37, 16);
+            this.labelTitleMail.TabIndex = 39;
+            this.labelTitleMail.Text = "Mail";
             // 
-            // label11
+            // labelTitleNickName
             // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(616, 75);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(77, 16);
-            this.label11.TabIndex = 40;
-            this.label11.Text = "Nickname";
+            this.labelTitleNickName.AutoSize = true;
+            this.labelTitleNickName.BackColor = System.Drawing.Color.Transparent;
+            this.labelTitleNickName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitleNickName.ForeColor = System.Drawing.Color.White;
+            this.labelTitleNickName.Location = new System.Drawing.Point(616, 75);
+            this.labelTitleNickName.Name = "labelTitleNickName";
+            this.labelTitleNickName.Size = new System.Drawing.Size(77, 16);
+            this.labelTitleNickName.TabIndex = 40;
+            this.labelTitleNickName.Text = "Nickname";
             // 
-            // label12
+            // labelTitleBirthday
             // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(616, 102);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 16);
-            this.label12.TabIndex = 41;
-            this.label12.Text = "Birthday";
+            this.labelTitleBirthday.AutoSize = true;
+            this.labelTitleBirthday.BackColor = System.Drawing.Color.Transparent;
+            this.labelTitleBirthday.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitleBirthday.ForeColor = System.Drawing.Color.White;
+            this.labelTitleBirthday.Location = new System.Drawing.Point(616, 102);
+            this.labelTitleBirthday.Name = "labelTitleBirthday";
+            this.labelTitleBirthday.Size = new System.Drawing.Size(65, 16);
+            this.labelTitleBirthday.TabIndex = 41;
+            this.labelTitleBirthday.Text = "Birthday";
             // 
             // labelMail
             // 
@@ -600,13 +601,6 @@
             this.textBoxNickName.Name = "textBoxNickName";
             this.textBoxNickName.Size = new System.Drawing.Size(245, 20);
             this.textBoxNickName.TabIndex = 51;
-            // 
-            // textBoxBirthday
-            // 
-            this.textBoxBirthday.Location = new System.Drawing.Point(709, 100);
-            this.textBoxBirthday.Name = "textBoxBirthday";
-            this.textBoxBirthday.Size = new System.Drawing.Size(245, 20);
-            this.textBoxBirthday.TabIndex = 52;
             // 
             // imageList32
             // 
@@ -683,6 +677,15 @@
             this.documentIcon4.Size = new System.Drawing.Size(149, 55);
             this.documentIcon4.TabIndex = 19;
             // 
+            // dateTimePickerBirthday
+            // 
+            this.dateTimePickerBirthday.CustomFormat = "dd/MMMMM/yyyy";
+            this.dateTimePickerBirthday.Font = new System.Drawing.Font("Calibri", 10F);
+            this.dateTimePickerBirthday.Location = new System.Drawing.Point(709, 100);
+            this.dateTimePickerBirthday.Name = "dateTimePickerBirthday";
+            this.dateTimePickerBirthday.Size = new System.Drawing.Size(245, 24);
+            this.dateTimePickerBirthday.TabIndex = 52;
+            // 
             // PersonView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -690,7 +693,7 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Controls.Add(this.textBoxBirthday);
+            this.Controls.Add(this.dateTimePickerBirthday);
             this.Controls.Add(this.textBoxNickName);
             this.Controls.Add(this.textBoxMail);
             this.Controls.Add(this.textBoxComment);
@@ -698,9 +701,9 @@
             this.Controls.Add(this.labelBirthday);
             this.Controls.Add(this.labelNickname);
             this.Controls.Add(this.labelMail);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.labelTitleBirthday);
+            this.Controls.Add(this.labelTitleNickName);
+            this.Controls.Add(this.labelTitleMail);
             this.Controls.Add(this.comboBoxGender);
             this.Controls.Add(this.textBoxActivity);
             this.Controls.Add(this.textBoxNationality);
@@ -725,11 +728,11 @@
             this.Controls.Add(this.labelGender);
             this.Controls.Add(this.labelFirstName);
             this.Controls.Add(this.labelFamilyName);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelTitleActivity);
+            this.Controls.Add(this.labelTitleNationality);
+            this.Controls.Add(this.labelTitleGender);
+            this.Controls.Add(this.labelTitleLastName);
+            this.Controls.Add(this.labelTitleName);
             this.Controls.Add(this.labelFullName);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.pictureBox6);
@@ -762,11 +765,11 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Label labelFullName;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelTitleName;
+        private System.Windows.Forms.Label labelTitleLastName;
+        private System.Windows.Forms.Label labelTitleGender;
+        private System.Windows.Forms.Label labelTitleNationality;
+        private System.Windows.Forms.Label labelTitleActivity;
         private System.Windows.Forms.Label labelFamilyName;
         private System.Windows.Forms.Label labelFirstName;
         private System.Windows.Forms.Label labelGender;
@@ -792,9 +795,9 @@
         private System.Windows.Forms.TextBox textBoxActivity;
         private System.Windows.Forms.ComboBox comboBoxGender;
         private System.Windows.Forms.ImageList imageList;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label labelTitleMail;
+        private System.Windows.Forms.Label labelTitleNickName;
+        private System.Windows.Forms.Label labelTitleBirthday;
         private System.Windows.Forms.Label labelMail;
         private System.Windows.Forms.Label labelNickname;
         private System.Windows.Forms.Label labelBirthday;
@@ -802,7 +805,7 @@
         private System.Windows.Forms.TextBox textBoxComment;
         private System.Windows.Forms.TextBox textBoxMail;
         private System.Windows.Forms.TextBox textBoxNickName;
-        private System.Windows.Forms.TextBox textBoxBirthday;
         private System.Windows.Forms.ImageList imageList32;
+        private System.Windows.Forms.DateTimePicker dateTimePickerBirthday;
     }
 }

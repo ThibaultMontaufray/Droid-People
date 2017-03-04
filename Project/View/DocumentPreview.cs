@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Log Code 00 05
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -8,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Tools4Libraries;
 
 namespace Droid_People
 {
@@ -45,18 +48,25 @@ namespace Droid_People
         #region Methods public
         public void LoadDocument()
         {
-            if (_currentDocument == null)
+            try
             {
-                pictureBoxPreview.Visible = false;
+                if (_currentDocument == null)
+                {
+                    pictureBoxPreview.Visible = false;
+                }
+                else if (Path.GetExtension(_currentDocument) != null && _extentionImages.Contains(Path.GetExtension(_currentDocument).ToLower().Replace(".", string.Empty)))
+                {
+                    pictureBoxPreview.Visible = true;
+                    pictureBoxPreview.BackgroundImage = Image.FromFile(_currentDocument);
+                }
+                else
+                {
+                    pictureBoxPreview.Visible = false;
+                }
             }
-            else if (Path.GetExtension(_currentDocument) != null && _extentionImages.Contains(Path.GetExtension(_currentDocument).ToLower().Replace(".", string.Empty)))
+            catch (Exception exp)
             {
-                pictureBoxPreview.Visible = true;
-                pictureBoxPreview.BackgroundImage = Image.FromFile(_currentDocument);
-            }
-            else
-            {
-                pictureBoxPreview.Visible = false;
+                Log.Write("[ ERR : 0400 ] Error while getting a user document. \n\n" + exp.Message);
             }
         }
         #endregion

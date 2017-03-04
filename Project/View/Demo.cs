@@ -13,8 +13,13 @@ namespace Droid_People
     public partial class Demo : Form
     {
         #region Attribute
-        private PersonView _personView;
         private readonly string WORKING_DIRECTORY = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Servodroid\Droid-People";
+
+        private Ribbon _ribbon;
+        private Interface_people _intPeo;
+
+        private RibbonButton _btn_open;
+        private RibbonButton _btn_exit;
         #endregion
 
         #region Properties
@@ -23,41 +28,72 @@ namespace Droid_People
         #region Constructor
         public Demo()
         {
+            Tools4Libraries.Log.ApplicationAppData = WORKING_DIRECTORY;
+            
             InitializeComponent();
             Init();
         }
         #endregion
 
         #region Methods public
+        public void ChangeLanguage()
+        {
+            _ribbon.OrbText = GetText.Text("File");
+            _btn_open.Text = GetText.Text("Open");
+            _btn_exit.Text = GetText.Text("Exit");
+        }
         #endregion
 
         #region Methods private
         private void Init()
         {
-            Tools4Libraries.Log.ApplicationAppData = WORKING_DIRECTORY;
+            _intPeo = new Interface_people(WORKING_DIRECTORY);
+            this.Controls.Add(_intPeo.Sheet);
 
-            createPerson = new View.CreatePerson(WORKING_DIRECTORY);
-            createPerson.Dock = DockStyle.Fill;
-            this.Controls.Add(createPerson);
-            createPerson.ResearchCompleted += SearchPerson1_ResearchCompleted;
-
-            _personView = new PersonView(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Servodroid\Droid-People", createPerson.CurrentPerson);
+            BuildRibbon();
         }
-        private void SwithToPersonDetailView()
+        private void BuildRibbon()
         {
-            this.Width = 1053;
-            this.Height = _personView.Height + 39;
-            this.Controls.Clear();
+            _ribbon = new Ribbon();
+            _ribbon.Height = 150;
+            _ribbon.ThemeColor = RibbonTheme.Black;
+            _ribbon.OrbDropDown.Width = 150;
+            _ribbon.OrbStyle = RibbonOrbStyle.Office_2013;
+            _ribbon.OrbText = GetText.Text("File");
+            _ribbon.QuickAccessToolbar.MenuButtonVisible = false;
+            _ribbon.QuickAccessToolbar.Visible = false;
+            _ribbon.QuickAccessToolbar.MinSizeMode = RibbonElementSizeMode.Compact;
+            _ribbon.Tabs.Add(_intPeo.Tsm);
 
-            _personView.CurrentPerson = createPerson.CurrentPerson;
-            this.Controls.Add(_personView);
+            _btn_open = new RibbonButton(GetText.Text("Open"));
+            _btn_open.Image = Tools4Libraries.Resources.ResourceIconSet32Default.open_folder;
+            _btn_open.SmallImage = Tools4Libraries.Resources.ResourceIconSet16Default.open_folder;
+            _btn_open.Click += B_open_Click;
+            _ribbon.OrbDropDown.MenuItems.Add(_btn_open);
+
+            _btn_exit = new RibbonButton(GetText.Text("Exit"));
+            _btn_exit.Image = Tools4Libraries.Resources.ResourceIconSet32Default.door_out;
+            _btn_exit.SmallImage = Tools4Libraries.Resources.ResourceIconSet16Default.door_out;
+            _btn_exit.Click += B_exit_Click;
+            _ribbon.OrbDropDown.MenuItems.Add(_btn_exit);
+
+            _ribbon.OrbDropDown.Width = 700;
+            this.Controls.Add(_ribbon);
         }
         #endregion
 
         #region Event
-        private void SearchPerson1_ResearchCompleted()
+        private void _intBoo_LanguageModified()
         {
-            SwithToPersonDetailView();
+            ChangeLanguage();
+        }
+        private void B_exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void B_open_Click(object sender, EventArgs e)
+        {
+            _intPeo.Open(null);
         }
         #endregion
     }
