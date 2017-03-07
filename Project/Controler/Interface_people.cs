@@ -8,9 +8,13 @@ using Tools4Libraries;
 
 namespace Droid_People
 {
+    public delegate void InterfaceEventHandler();
     public class Interface_people : GPInterface
     {
         #region Attribute
+        public readonly int TOP_OFFSET = 175;
+        public event InterfaceEventHandler SheetDisplayRequested;
+
         private ToolStripMenuPeople _tsm;
         private Panel _sheet;
         private string _workingDirectory;
@@ -125,7 +129,8 @@ namespace Droid_People
             _persons = new List<Person>();
 
             _sheet = new Panel();
-            _sheet.BackColor = System.Drawing.Color.FromArgb(255, 64, 64, 64);
+            _sheet.BackgroundImage = Properties.Resources.ShieldTileBg;
+            _sheet.BackgroundImageLayout = ImageLayout.Tile;
             _sheet.Dock = DockStyle.Fill;
             _sheet.Resize += _sheet_Resize;
             
@@ -156,11 +161,12 @@ namespace Droid_People
                 //_currentPerson.WorkingDirectory = Path.Combine(_workingDirectory, _currentPerson.Id);
 
                 _viewDetail.RefreshData();
-                _viewDetail.Top = 20;
+                _viewDetail.Top = TOP_OFFSET;
                 _viewDetail.Left = (_sheet.Width / 2) - (_viewDetail.Width / 2);
                 _viewDetail.ChangeLanguage();
                 _viewDetail.IsEditable = false;
                 _sheet.Controls.Add(_viewDetail);
+                if (SheetDisplayRequested != null) SheetDisplayRequested();
             }
         }
         private void LaunchCreate()
@@ -170,12 +176,13 @@ namespace Droid_People
             _currentPerson = new Person(_workingDirectory);
             //_currentPerson.WorkingDirectory = Path.Combine(_workingDirectory, _currentPerson.Id);
 
-            _viewDetail.Top = 20;
+            _viewDetail.Top = TOP_OFFSET;
             _viewDetail.RefreshData();
             _viewDetail.Left = (_sheet.Width / 2) - (_viewDetail.Width / 2);
             _viewDetail.ChangeLanguage();
             _viewDetail.IsEditable = true;
             _sheet.Controls.Add(_viewDetail);
+            if (SheetDisplayRequested != null) SheetDisplayRequested();
         }
         private void LaunchEdit()
         {
@@ -184,12 +191,13 @@ namespace Droid_People
                 _sheet.Controls.Clear();
                 //_currentPerson.WorkingDirectory = Path.Combine(_workingDirectory, _currentPerson.Id);
 
-                _viewDetail.Top = 20;
+                _viewDetail.Top = TOP_OFFSET;
                 _viewDetail.RefreshData();
                 _viewDetail.Left = (_sheet.Width / 2) - (_viewDetail.Width / 2);
                 _viewDetail.ChangeLanguage();
                 _viewDetail.IsEditable = true;
                 _sheet.Controls.Add(_viewDetail);
+                if (SheetDisplayRequested != null) SheetDisplayRequested();
             }
         }
         private void LaunchDetail()
@@ -199,33 +207,36 @@ namespace Droid_People
                 _sheet.Controls.Clear();
                 //_currentPerson.WorkingDirectory = Path.Combine(_workingDirectory, _currentPerson.Id);
 
-                _viewDetail.Top = 20;
+                _viewDetail.Top = TOP_OFFSET;
                 _viewDetail.RefreshData();
                 _viewDetail.Left = (_sheet.Width / 2) - (_viewDetail.Width / 2);
                 _viewDetail.ChangeLanguage();
                 _viewDetail.IsEditable = false;
                 _sheet.Controls.Add(_viewDetail);
+                if (SheetDisplayRequested != null) SheetDisplayRequested();
             }
         }
         private void LaunchWeb()
         {
             _sheet.Controls.Clear();
 
-            _viewWebResult.Top = 20;
+            _viewWebResult.Top = TOP_OFFSET;
             _viewWebResult.RefreshData();
             _viewWebResult.Left = (_sheet.Width / 2) - (_viewWebResult.Width / 2);
             _viewWebResult.ChangeLanguage();
             _sheet.Controls.Add(_viewWebResult);
+            if (SheetDisplayRequested != null) SheetDisplayRequested();
         }
         private void LaunchSearch()
         {
             _sheet.Controls.Clear();
             
-            _viewSearch.Top = 20;
+            _viewSearch.Top = TOP_OFFSET;
             _viewSearch.RefreshData();
             _viewSearch.Left = (_sheet.Width / 2) - (_viewSearch.Width / 2);
             _viewSearch.ChangeLanguage();
             _sheet.Controls.Add(_viewSearch);
+            if (SheetDisplayRequested != null) SheetDisplayRequested();
         }
         private void LaunchLoad()
         {

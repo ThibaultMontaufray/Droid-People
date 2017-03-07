@@ -22,7 +22,7 @@ namespace Droid_People.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Droid_People.Properties {
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Droid_People.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Droid_People.Properties {
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,23 +61,52 @@ namespace Droid_People.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à univers,type,valeur,genre,signification,culture,origine
-        ///reel,français, Mégane,f,,,
-        ///reel,français,Aaron,m,celui qui vient après,hébreu,
-        ///reel,irlandais,Abaigh,f,joie|père,hébreux,abigail
-        ///reel,irlandais,Aban,m,aubépine|blanc,,alban
-        ///reel,irlandais,Abban,m,,,alban
-        ///reel,irlandais,Abbie,f,joie|père,hébreux,abigail
-        ///reel,français,Abdon,m,serviteur,hébreu,
-        ///reel,français,Abdonie,f,,hébreu,abdon
-        ///reel,français,Abdonise,f,,hébreu,Abel
-        ///reel,français,Abel,m,le fils,hébreu,
-        ///reel,français,Abélard,m,,hébreu,Abel
-        ///reel,français [le reste de la chaîne a été tronqué]&quot;;.
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        public static string prenom {
+        internal static System.Drawing.Bitmap backgrounPerson {
             get {
-                return ResourceManager.GetString("prenom", resourceCulture);
+                object obj = ResourceManager.GetObject("backgrounPerson", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap shadow_backpacker {
+            get {
+                object obj = ResourceManager.GetObject("shadow_backpacker", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap shadow_man {
+            get {
+                object obj = ResourceManager.GetObject("shadow_man", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap shadow_woman {
+            get {
+                object obj = ResourceManager.GetObject("shadow_woman", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ShieldTileBg {
+            get {
+                object obj = ResourceManager.GetObject("ShieldTileBg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

@@ -62,7 +62,6 @@
             this.textBoxNationality = new System.Windows.Forms.TextBox();
             this.textBoxActivity = new System.Windows.Forms.TextBox();
             this.comboBoxGender = new System.Windows.Forms.ComboBox();
-            this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.labelTitleMail = new System.Windows.Forms.Label();
             this.labelTitleNickName = new System.Windows.Forms.Label();
             this.labelTitleBirthday = new System.Windows.Forms.Label();
@@ -73,13 +72,13 @@
             this.textBoxMail = new System.Windows.Forms.TextBox();
             this.textBoxNickName = new System.Windows.Forms.TextBox();
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
+            this.dateTimePickerBirthday = new System.Windows.Forms.DateTimePicker();
             this.documentPreviewComment = new Droid_People.DocumentPreview();
             this.documentPreview = new Droid_People.DocumentPreview();
             this.documentIcon1 = new Droid_People.DocumentIcon();
             this.documentIcon2 = new Droid_People.DocumentIcon();
             this.documentIcon3 = new Droid_People.DocumentIcon();
             this.documentIcon4 = new Droid_People.DocumentIcon();
-            this.dateTimePickerBirthday = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -496,15 +495,6 @@
             this.comboBoxGender.Size = new System.Drawing.Size(245, 21);
             this.comboBoxGender.TabIndex = 38;
             // 
-            // imageList
-            // 
-            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList.Images.SetKeyName(0, "backgrounPeople");
-            this.imageList.Images.SetKeyName(1, "shadow_man");
-            this.imageList.Images.SetKeyName(2, "shadow_backpacker");
-            this.imageList.Images.SetKeyName(3, "shadow_woman");
-            // 
             // labelTitleMail
             // 
             this.labelTitleMail.AutoSize = true;
@@ -610,6 +600,15 @@
             this.imageList32.Images.SetKeyName(1, "save");
             this.imageList32.Images.SetKeyName(2, "userEdit");
             // 
+            // dateTimePickerBirthday
+            // 
+            this.dateTimePickerBirthday.CustomFormat = "dd/MMMMM/yyyy";
+            this.dateTimePickerBirthday.Font = new System.Drawing.Font("Calibri", 10F);
+            this.dateTimePickerBirthday.Location = new System.Drawing.Point(709, 100);
+            this.dateTimePickerBirthday.Name = "dateTimePickerBirthday";
+            this.dateTimePickerBirthday.Size = new System.Drawing.Size(245, 24);
+            this.dateTimePickerBirthday.TabIndex = 52;
+            // 
             // documentPreviewComment
             // 
             this.documentPreviewComment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -676,15 +675,6 @@
             this.documentIcon4.Name = "documentIcon4";
             this.documentIcon4.Size = new System.Drawing.Size(149, 55);
             this.documentIcon4.TabIndex = 19;
-            // 
-            // dateTimePickerBirthday
-            // 
-            this.dateTimePickerBirthday.CustomFormat = "dd/MMMMM/yyyy";
-            this.dateTimePickerBirthday.Font = new System.Drawing.Font("Calibri", 10F);
-            this.dateTimePickerBirthday.Location = new System.Drawing.Point(709, 100);
-            this.dateTimePickerBirthday.Name = "dateTimePickerBirthday";
-            this.dateTimePickerBirthday.Size = new System.Drawing.Size(245, 24);
-            this.dateTimePickerBirthday.TabIndex = 52;
             // 
             // PersonView
             // 
@@ -794,7 +784,6 @@
         private System.Windows.Forms.TextBox textBoxNationality;
         private System.Windows.Forms.TextBox textBoxActivity;
         private System.Windows.Forms.ComboBox comboBoxGender;
-        private System.Windows.Forms.ImageList imageList;
         private System.Windows.Forms.Label labelTitleMail;
         private System.Windows.Forms.Label labelTitleNickName;
         private System.Windows.Forms.Label labelTitleBirthday;

@@ -65,15 +65,15 @@ namespace Droid_People
                     switch (_intPeo.CurrentPerson.Gender)
                     {
                         case Person.GENDER.MALE:
-                            pictureBox1.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("shadow_man")];
+                            pictureBox1.BackgroundImage = Properties.Resources.shadow_man;
                             break;
                         case Person.GENDER.FEMAL:
-                            pictureBox1.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("shadow_woman")];
+                            pictureBox1.BackgroundImage = Properties.Resources.shadow_woman;
                             break;
                         case Person.GENDER.OTHER:
                         case Person.GENDER.UNKNOW:
                         default:
-                            pictureBox1.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("shadow_backpacker")];
+                            pictureBox1.BackgroundImage = Properties.Resources.shadow_backpacker;
                             break;
                     }
                 }
@@ -85,7 +85,7 @@ namespace Droid_People
                 else
                 {
                     pictureBox2.Tag = "Default";
-                    pictureBox2.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("backgrounPeople")];
+                    pictureBox2.BackgroundImage = Properties.Resources.backgrounPerson;
                 }
                 if (_intPeo.CurrentPerson.Pictures.Count > 2)
                 {
@@ -95,7 +95,7 @@ namespace Droid_People
                 else
                 {
                     pictureBox3.Tag = "Default";
-                    pictureBox3.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("backgrounPeople")];
+                    pictureBox3.BackgroundImage = Properties.Resources.backgrounPerson;
                 }
                 if (_intPeo.CurrentPerson.Pictures.Count > 3)
                 {
@@ -105,7 +105,7 @@ namespace Droid_People
                 else
                 {
                     pictureBox4.Tag = "Default";
-                    pictureBox4.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("backgrounPeople")];
+                    pictureBox4.BackgroundImage = Properties.Resources.backgrounPerson;
                 }
                 if (_intPeo.CurrentPerson.Pictures.Count > 4)
                 {
@@ -115,7 +115,7 @@ namespace Droid_People
                 else
                 {
                     pictureBox5.Tag = "Default";
-                    pictureBox5.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("backgrounPeople")];
+                    pictureBox5.BackgroundImage = Properties.Resources.backgrounPerson;
                 }
                 if (_intPeo.CurrentPerson.Pictures.Count > 5)
                 {
@@ -125,7 +125,7 @@ namespace Droid_People
                 else
                 {
                     pictureBox6.Tag = "Default";
-                    pictureBox6.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("backgrounPeople")];
+                    pictureBox6.BackgroundImage = Properties.Resources.backgrounPerson;
                 }
                 if (_intPeo.CurrentPerson.Pictures.Count > 6)
                 {
@@ -135,7 +135,7 @@ namespace Droid_People
                 else
                 {
                     pictureBox7.Tag = "Default";
-                    pictureBox7.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("backgrounPeople")];
+                    pictureBox7.BackgroundImage = Properties.Resources.backgrounPerson;
                 }
 
                 if (_intPeo.CurrentPerson.Documents.Count > 0) { documentIcon1.CurrentDocument = Path.Combine(_intPeo.WorkingDirectory, _intPeo.CurrentPerson.Id, _intPeo.CurrentPerson.Documents[0]); }
@@ -444,15 +444,15 @@ namespace Droid_People
             switch (_intPeo.CurrentPerson.Gender)
             {
                 case Person.GENDER.MALE:
-                    pictureBox1.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("shadow_man")];
+                    pictureBox1.BackgroundImage = Properties.Resources.shadow_man;
                     break;
                 case Person.GENDER.FEMAL:
-                    pictureBox1.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("shadow_woman")];
+                    pictureBox1.BackgroundImage = Properties.Resources.shadow_woman;
                     break;
                 case Person.GENDER.OTHER:
                 case Person.GENDER.UNKNOW:
                 default:
-                    pictureBox1.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("shadow_backpacker")];
+                    pictureBox1.BackgroundImage = Properties.Resources.shadow_backpacker;
                     break;
             }
             pictureBox1.Tag = "Default";
@@ -460,37 +460,37 @@ namespace Droid_People
         }
         private void buttonDelete2_Click(object sender, EventArgs e)
         {
-            pictureBox2.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("backgrounPeople")];
+            pictureBox2.BackgroundImage = Properties.Resources.backgrounPerson;
             pictureBox2.Tag = "Default";
             _intPeo.CurrentPerson.Pictures.Remove(pictureBox2.BackgroundImage);
         }
         private void buttonDelete3_Click(object sender, EventArgs e)
         {
-            pictureBox3.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("backgrounPeople")];
+            pictureBox3.BackgroundImage = Properties.Resources.backgrounPerson;
             pictureBox3.Tag = "Default";
             _intPeo.CurrentPerson.Pictures.Remove(pictureBox3.BackgroundImage);
         }
         private void buttonDelete4_Click(object sender, EventArgs e)
         {
-            pictureBox4.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("backgrounPeople")];
+            pictureBox4.BackgroundImage = Properties.Resources.backgrounPerson;
             pictureBox4.Tag = "Default";
             _intPeo.CurrentPerson.Pictures.Remove(pictureBox4.BackgroundImage);
         }
         private void buttonDelete5_Click(object sender, EventArgs e)
         {
-            pictureBox5.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("backgrounPeople")];
+            pictureBox5.BackgroundImage = Properties.Resources.backgrounPerson;
             pictureBox5.Tag = "Default";
             _intPeo.CurrentPerson.Pictures.Remove(pictureBox5.BackgroundImage);
         }
         private void buttonDelete6_Click(object sender, EventArgs e)
         {
-            pictureBox6.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("backgrounPeople")];
+            pictureBox6.BackgroundImage = Properties.Resources.backgrounPerson;
             pictureBox6.Tag = "Default";
             _intPeo.CurrentPerson.Pictures.Remove(pictureBox6.BackgroundImage);
         }
         private void buttonDelete7_Click(object sender, EventArgs e)
         {
-            pictureBox7.BackgroundImage = imageList.Images[imageList.Images.IndexOfKey("backgrounPeople")];
+            pictureBox7.BackgroundImage = Properties.Resources.backgrounPerson;
             pictureBox7.Tag = "Default";
             _intPeo.CurrentPerson.Pictures.Remove(pictureBox7.BackgroundImage);
         }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using Tools4Libraries;
 
 namespace Droid_People
 {
@@ -30,7 +31,7 @@ namespace Droid_People
         private Label labelFirstname;
         private DataGridView _dgvSearchPerson;
         private FontDialog fontDialog1;
-        private PanelShield _panelUserSearch;
+        private PanelCustom _panelUserSearch;
         private DataGridViewTextBoxColumn ColumnName;
         private DataGridViewTextBoxColumn ColumnFamilyName;
         private DataGridViewImageColumn ColumnGender;
@@ -152,7 +153,7 @@ namespace Droid_People
             this.textBoxFirstname = new System.Windows.Forms.TextBox();
             this.labelFamilyname = new System.Windows.Forms.Label();
             this.labelFirstname = new System.Windows.Forms.Label();
-            this._panelUserSearch = new Droid_People.PanelShield();
+            this._panelUserSearch = new PanelCustom();
             ((System.ComponentModel.ISupportInitialize)(this._dgvSearchPerson)).BeginInit();
             this.SuspendLayout();
             // 
