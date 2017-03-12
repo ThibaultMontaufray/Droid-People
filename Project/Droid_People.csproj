@@ -258,6 +258,8 @@
     <None Include="Resources\shadow_woman2.png" />
     <None Include="Resources\ShieldTileBg.png" />
     <None Include="Resources\backgrounPerson.png" />
+    <None Include="Resources\lexBg.jpg" />
+    <None Include="Resources\ShieldTileBgWhite.png" />
     <Content Include="ServoPeople.ico" />
     <Content Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />

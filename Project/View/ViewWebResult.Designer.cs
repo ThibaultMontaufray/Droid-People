@@ -393,13 +393,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.groupBoxFacebook);
             this.Controls.Add(this.groupBoxGoogle);
             this.Controls.Add(this.groupBoxFirstName);
             this.Controls.Add(this.groupBoxSearch);
             this.Name = "ViewWebResult";
-            this.Size = new System.Drawing.Size(756, 492);
+            this.Size = new System.Drawing.Size(756, 472);
             this.groupBoxSearch.ResumeLayout(false);
             this.groupBoxSearch.PerformLayout();
             this.groupBoxFirstName.ResumeLayout(false);

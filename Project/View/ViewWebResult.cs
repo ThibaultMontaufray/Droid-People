@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tools4Libraries;
 
 namespace Droid_People
 {
-    public partial class ViewWebResult : UserControl
+    public partial class ViewWebResult : UserControlCustom
     {
         #region Attribute
         private Interface_people _intPeo;
@@ -97,7 +98,7 @@ namespace Droid_People
             { 
                 labelFirstName.Text = p.FirstName.Firstname;
                 labelCulture.Text = p.FirstName.Culture;
-                labelDescription.Text = p.FirstName.Description;
+                labelDescription.Text = string.IsNullOrEmpty(p.FirstName.Description) ? string.Empty : p.FirstName.Description.Replace("|", ", ");
                 labelOrigine.Text = p.FirstName.Origin;
             }
             else
@@ -121,11 +122,10 @@ namespace Droid_People
         #endregion
 
         #region Event
-        #endregion
-
         private void buttonAnalyse_Click(object sender, EventArgs e)
         {
             Analyse();
         }
+        #endregion
     }
 }

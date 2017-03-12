@@ -8,7 +8,7 @@ using Tools4Libraries;
 namespace Droid_People
 {
     public delegate void ViewUserEventHandler(object o);
-    public class ViewUserSearch : UserControl
+    public class ViewUserSearch : UserControlCustom
     {
         #region Attribute
         public event ViewUserEventHandler RequestUserDetail;
@@ -31,7 +31,6 @@ namespace Droid_People
         private Label labelFirstname;
         private DataGridView _dgvSearchPerson;
         private FontDialog fontDialog1;
-        private PanelCustom _panelUserSearch;
         private DataGridViewTextBoxColumn ColumnName;
         private DataGridViewTextBoxColumn ColumnFamilyName;
         private DataGridViewImageColumn ColumnGender;
@@ -57,7 +56,6 @@ namespace Droid_People
         public ViewUserSearch()
         {
             InitializeComponent();
-            InitializeComponentSpecial();
             Init();
         }
         public ViewUserSearch(Interface_people intBoo)
@@ -65,7 +63,6 @@ namespace Droid_People
             _intPeo = intBoo;
 
             InitializeComponent();
-            InitializeComponentSpecial();
             Init();
         }
         #endregion
@@ -125,7 +122,6 @@ namespace Droid_People
 
             _dgvSearchPerson.Visible = _dgvSearchPerson.Rows.Count != 0;
             _dgvSearchPerson.Height = (_dgvSearchPerson.Rows.Count * 22) + _dgvSearchPerson.ColumnHeadersHeight;
-            _dgvSearchPerson.Top = _panelUserSearch.Top + 10 + _panelUserSearch.Height;
 
             _dgvSearchPerson.Columns[_dgvSearchPerson.Columns.IndexOf(ColumnId)].Visible = false;
             ChangeLanguage();
@@ -153,7 +149,6 @@ namespace Droid_People
             this.textBoxFirstname = new System.Windows.Forms.TextBox();
             this.labelFamilyname = new System.Windows.Forms.Label();
             this.labelFirstname = new System.Windows.Forms.Label();
-            this._panelUserSearch = new PanelCustom();
             ((System.ComponentModel.ISupportInitialize)(this._dgvSearchPerson)).BeginInit();
             this.SuspendLayout();
             // 
@@ -163,8 +158,6 @@ namespace Droid_People
             this._dgvSearchPerson.AllowUserToDeleteRows = false;
             this._dgvSearchPerson.AllowUserToOrderColumns = true;
             this._dgvSearchPerson.AllowUserToResizeRows = false;
-            this._dgvSearchPerson.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this._dgvSearchPerson.BackgroundColor = System.Drawing.Color.Gray;
             this._dgvSearchPerson.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this._dgvSearchPerson.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -179,13 +172,13 @@ namespace Droid_People
             this.ColumnDetail,
             this.ColumnEdit,
             this.ColumnDelete});
-            this._dgvSearchPerson.Location = new System.Drawing.Point(24, 138);
+            this._dgvSearchPerson.Location = new System.Drawing.Point(0, 89);
             this._dgvSearchPerson.MultiSelect = false;
             this._dgvSearchPerson.Name = "_dgvSearchPerson";
             this._dgvSearchPerson.RowHeadersVisible = false;
             this._dgvSearchPerson.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this._dgvSearchPerson.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this._dgvSearchPerson.Size = new System.Drawing.Size(730, 277);
+            this._dgvSearchPerson.Size = new System.Drawing.Size(672, 228);
             this._dgvSearchPerson.TabIndex = 24;
             this._dgvSearchPerson.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._dgvSearchUser_CellClick);
             // 
@@ -264,20 +257,20 @@ namespace Droid_People
             // 
             // comboBoxGender
             // 
-            this.comboBoxGender.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxGender.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxGender.FormattingEnabled = true;
             this.comboBoxGender.Location = new System.Drawing.Point(103, 53);
             this.comboBoxGender.Name = "comboBoxGender";
-            this.comboBoxGender.Size = new System.Drawing.Size(262, 27);
+            this.comboBoxGender.Size = new System.Drawing.Size(262, 23);
             this.comboBoxGender.TabIndex = 26;
             // 
             // comboBoxNationality
             // 
-            this.comboBoxNationality.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxNationality.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxNationality.FormattingEnabled = true;
             this.comboBoxNationality.Location = new System.Drawing.Point(469, -3);
             this.comboBoxNationality.Name = "comboBoxNationality";
-            this.comboBoxNationality.Size = new System.Drawing.Size(199, 27);
+            this.comboBoxNationality.Size = new System.Drawing.Size(199, 23);
             this.comboBoxNationality.TabIndex = 25;
             // 
             // buttonValidation
@@ -293,80 +286,69 @@ namespace Droid_People
             // 
             // textBoxFamilyName
             // 
-            this.textBoxFamilyName.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxFamilyName.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxFamilyName.Location = new System.Drawing.Point(103, 25);
             this.textBoxFamilyName.Name = "textBoxFamilyName";
-            this.textBoxFamilyName.Size = new System.Drawing.Size(262, 27);
+            this.textBoxFamilyName.Size = new System.Drawing.Size(262, 24);
             this.textBoxFamilyName.TabIndex = 19;
             // 
             // labelNationality
             // 
             this.labelNationality.AutoSize = true;
-            this.labelNationality.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNationality.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNationality.ForeColor = System.Drawing.Color.White;
             this.labelNationality.Location = new System.Drawing.Point(371, 0);
             this.labelNationality.Name = "labelNationality";
-            this.labelNationality.Size = new System.Drawing.Size(92, 19);
+            this.labelNationality.Size = new System.Drawing.Size(80, 17);
             this.labelNationality.TabIndex = 8;
             this.labelNationality.Text = "Nationality : ";
             // 
             // labelGender
             // 
             this.labelGender.AutoSize = true;
-            this.labelGender.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGender.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelGender.ForeColor = System.Drawing.Color.White;
             this.labelGender.Location = new System.Drawing.Point(-4, 56);
             this.labelGender.Name = "labelGender";
-            this.labelGender.Size = new System.Drawing.Size(68, 19);
+            this.labelGender.Size = new System.Drawing.Size(60, 17);
             this.labelGender.TabIndex = 6;
             this.labelGender.Text = "Gender : ";
             // 
             // textBoxFirstname
             // 
-            this.textBoxFirstname.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxFirstname.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxFirstname.Location = new System.Drawing.Point(103, -3);
             this.textBoxFirstname.Name = "textBoxFirstname";
-            this.textBoxFirstname.Size = new System.Drawing.Size(262, 27);
+            this.textBoxFirstname.Size = new System.Drawing.Size(262, 24);
             this.textBoxFirstname.TabIndex = 11;
             // 
             // labelFamilyname
             // 
             this.labelFamilyname.AutoSize = true;
-            this.labelFamilyname.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFamilyname.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFamilyname.ForeColor = System.Drawing.Color.White;
             this.labelFamilyname.Location = new System.Drawing.Point(-4, 28);
             this.labelFamilyname.Name = "labelFamilyname";
-            this.labelFamilyname.Size = new System.Drawing.Size(103, 19);
+            this.labelFamilyname.Size = new System.Drawing.Size(89, 17);
             this.labelFamilyname.TabIndex = 4;
             this.labelFamilyname.Text = "Family name : ";
             // 
             // labelFirstname
             // 
             this.labelFirstname.AutoSize = true;
-            this.labelFirstname.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFirstname.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFirstname.ForeColor = System.Drawing.Color.White;
             this.labelFirstname.Location = new System.Drawing.Point(-4, 0);
             this.labelFirstname.Name = "labelFirstname";
-            this.labelFirstname.Size = new System.Drawing.Size(85, 19);
+            this.labelFirstname.Size = new System.Drawing.Size(74, 17);
             this.labelFirstname.TabIndex = 2;
             this.labelFirstname.Text = "Firstname : ";
-            // 
-            // _panelUserSearch
-            // 
-            this._panelUserSearch.BackColor = System.Drawing.Color.Transparent;
-            this._panelUserSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this._panelUserSearch.Location = new System.Drawing.Point(0, 0);
-            this._panelUserSearch.Margin = new System.Windows.Forms.Padding(5);
-            this._panelUserSearch.Name = "_panelUserSearch";
-            this._panelUserSearch.Size = new System.Drawing.Size(780, 120);
-            this._panelUserSearch.TabIndex = 27;
             // 
             // ViewUserSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this._panelUserSearch);
             this.Controls.Add(this._dgvSearchPerson);
             this.Controls.Add(this.labelFirstname);
             this.Controls.Add(this.labelFamilyname);
@@ -378,24 +360,11 @@ namespace Droid_People
             this.Controls.Add(this.textBoxFirstname);
             this.Controls.Add(this.buttonValidation);
             this.Name = "ViewUserSearch";
-            this.Size = new System.Drawing.Size(780, 442);
+            this.Size = new System.Drawing.Size(672, 320);
             ((System.ComponentModel.ISupportInitialize)(this._dgvSearchPerson)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
-        private void InitializeComponentSpecial()
-        {
-            this._panelUserSearch.panelMiddle.Controls.Add(labelFirstname);
-            this._panelUserSearch.panelMiddle.Controls.Add(labelFamilyname);
-            this._panelUserSearch.panelMiddle.Controls.Add(labelGender);
-            this._panelUserSearch.panelMiddle.Controls.Add(labelNationality);
-            this._panelUserSearch.panelMiddle.Controls.Add(comboBoxNationality);
-            this._panelUserSearch.panelMiddle.Controls.Add(comboBoxGender);
-            this._panelUserSearch.panelMiddle.Controls.Add(textBoxFamilyName);
-            this._panelUserSearch.panelMiddle.Controls.Add(textBoxFirstname);
-            this._panelUserSearch.panelMiddle.Controls.Add(buttonValidation);
-            this._panelUserSearch.Size = new System.Drawing.Size(1480, 174);
         }
         private void LoadGender()
         {
@@ -429,7 +398,6 @@ namespace Droid_People
             LoadFilteredUsers();
             _dgvSearchPerson.Visible = _dgvSearchPerson.Rows.Count != 0;
             _dgvSearchPerson.Height = (_dgvSearchPerson.Rows.Count * 22) + _dgvSearchPerson.ColumnHeadersHeight;
-            _dgvSearchPerson.Top = _panelUserSearch.Top + 10 + _panelUserSearch.Height;
         }
         private void LoadFilteredUsers()
         {
@@ -493,7 +461,6 @@ namespace Droid_People
 
             _dgvSearchPerson.Visible = _dgvSearchPerson.Rows.Count != 0;
             _dgvSearchPerson.Height = (_dgvSearchPerson.Rows.Count * 22) + _dgvSearchPerson.ColumnHeadersHeight;
-            _dgvSearchPerson.Top = _panelUserSearch.Top + 10 + _panelUserSearch.Height;
 
         }
         private void EditUser(int rowIndex)

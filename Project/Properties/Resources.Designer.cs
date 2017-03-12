@@ -73,6 +73,16 @@ namespace Droid_People.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lexBg {
+            get {
+                object obj = ResourceManager.GetObject("lexBg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap shadow_backpacker {
             get {
                 object obj = ResourceManager.GetObject("shadow_backpacker", resourceCulture);
@@ -106,6 +116,16 @@ namespace Droid_People.Properties {
         internal static System.Drawing.Bitmap ShieldTileBg {
             get {
                 object obj = ResourceManager.GetObject("ShieldTileBg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ShieldTileBgWhite {
+            get {
+                object obj = ResourceManager.GetObject("ShieldTileBgWhite", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

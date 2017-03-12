@@ -20,8 +20,8 @@ namespace Droid_People
         private string _workingDirectory;
         
         private PersonView _viewDetail;
-        private ViewUserSearch _viewSearch;
-        private ViewWebResult _viewWebResult;
+        private PanelCustom _viewSearch;
+        private PanelCustom _viewWebResult;
 
         private Person _currentPerson;
         private List<Person> _persons;
@@ -137,13 +137,14 @@ namespace Droid_People
             _viewDetail = new PersonView(this);
             _viewDetail.Name = "CurrentView";
 
-            _viewWebResult = new ViewWebResult(this);
+            _viewWebResult = new PanelCustom(new ViewWebResult(this));
             _viewWebResult.Name = "CurrentView";
 
-            _viewSearch = new ViewUserSearch(this);
+            ViewUserSearch vus = new ViewUserSearch(this);
+            vus.RequestUserDetail += _viewSearch_RequestUserDetail;
+            vus.RequestUserEdition += _viewSearch_RequestUserEdition;
+            _viewSearch = new PanelCustom(vus);
             _viewSearch.Name = "CurrentView";
-            _viewSearch.RequestUserDetail += _viewSearch_RequestUserDetail;
-            _viewSearch.RequestUserEdition += _viewSearch_RequestUserEdition;
 
             BuildToolBar();
             LaunchLoad();
