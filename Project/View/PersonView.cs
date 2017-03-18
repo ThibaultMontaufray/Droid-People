@@ -8,14 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Droid_Geography;
 
 namespace Droid_People
 {
+    public delegate void PersonViewEventHandler(object o);
     public partial class PersonView : UserControl
     {
         #region Attribute
+        public event PersonViewEventHandler PersonChanged;
+
         private bool _editionMode = false;
         private Interface_people _intPeo;
+        private WorldMap _worldMap;
         #endregion
 
         #region Properties
@@ -27,6 +32,11 @@ namespace Droid_People
                 _intPeo.CurrentPerson = value;
                 RefreshData();
             }
+        }
+        public WorldMap WorldMap
+        {
+            get { return _worldMap; }
+            set { _worldMap = value; }
         }
         public bool IsEditable
         {
@@ -206,6 +216,8 @@ namespace Droid_People
         #region Methods private
         private void Init()
         {
+            _worldMap = new WorldMap();
+
             documentPreview.Text = "Document preview";
             documentPreviewComment.Text = "Comment";
             InitComboBox();
@@ -233,6 +245,15 @@ namespace Droid_People
             }
             comboBoxGender.Sorted = true;
             comboBoxGender.SelectedItem = comboBoxGender.Items[comboBoxGender.Items.Count - 1];
+
+            comboBoxNationality.Items.Clear();
+            foreach (var item in _worldMap.Countries)
+            {
+                comboBoxNationality.Items.Add(item.Name);
+            }
+            comboBoxNationality.Sorted = true;
+            comboBoxNationality.SelectedItem = comboBoxGender.Items[0];
+
         }
         private void SwitchEditionViewControls()
         {
@@ -252,7 +273,7 @@ namespace Droid_People
                 labelBirthday.Visible = false;
 
                 textBoxActivity.Visible = true;
-                textBoxNationality.Visible = true;
+                comboBoxNationality.Visible = true;
                 textBoxFirstname.Visible = true;
                 textBoxName.Visible = true;
                 comboBoxGender.Visible = true;
@@ -269,7 +290,7 @@ namespace Droid_People
                 buttonDelete7.Visible = !pictureBox7.Tag.Equals("Default");
 
                 textBoxActivity.Text = labelActivity.Text;
-                textBoxNationality.Text = labelNationality.Text;
+                comboBoxNationality.SelectedItem = labelNationality.Text;
                 textBoxFirstname.Text = labelFirstName.Text;
                 textBoxName.Text = labelFamilyName.Text;
                 comboBoxGender.SelectedItem = labelGender.Text;
@@ -292,7 +313,7 @@ namespace Droid_People
                 labelBirthday.Visible = true;
 
                 textBoxActivity.Visible = false;
-                textBoxNationality.Visible = false;
+                comboBoxNationality.Visible = false;
                 textBoxFirstname.Visible = false;
                 textBoxName.Visible = false;
                 comboBoxGender.Visible = false;
@@ -315,7 +336,7 @@ namespace Droid_People
             _intPeo.CurrentPerson.FirstName = PeopleControler.GetFirstName(textBoxFirstname.Text);
             _intPeo.CurrentPerson.FamilyName = textBoxName.Text;
             //_intPeo.CurrentPerson.Activities
-            _intPeo.CurrentPerson.Nationality = textBoxNationality.Text;
+            _intPeo.CurrentPerson.Nationality = comboBoxNationality.Text;
             _intPeo.CurrentPerson.Gender = (Person.GENDER)Enum.Parse(typeof(Person.GENDER), comboBoxGender.Text.ToUpper());
             _intPeo.CurrentPerson.Birthday = dateTimePickerBirthday.Value;
             _intPeo.CurrentPerson.Nickname = textBoxNickName.Text;
@@ -374,6 +395,8 @@ namespace Droid_People
             }
             _intPeo.CurrentPerson.Save(_intPeo.WorkingDirectory);
             if (!_intPeo.Persons.Contains(_intPeo.CurrentPerson)) _intPeo.Persons.Add(_intPeo.CurrentPerson);
+
+            if (PersonChanged != null) { PersonChanged(_intPeo.CurrentPerson); }
         }
         #endregion
 

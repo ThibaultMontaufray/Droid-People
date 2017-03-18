@@ -11,6 +11,8 @@ namespace Droid_People
     public class ViewUserSearch : UserControlCustom
     {
         #region Attribute
+        public override event UserControlCustomEventHandler HeightChanged;
+
         public event ViewUserEventHandler RequestUserDetail;
         public event ViewUserEventHandler RequestUserEdition;
 

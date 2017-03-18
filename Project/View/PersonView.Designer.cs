@@ -59,7 +59,6 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxFirstname = new System.Windows.Forms.TextBox();
-            this.textBoxNationality = new System.Windows.Forms.TextBox();
             this.textBoxActivity = new System.Windows.Forms.TextBox();
             this.comboBoxGender = new System.Windows.Forms.ComboBox();
             this.labelTitleMail = new System.Windows.Forms.Label();
@@ -79,6 +78,7 @@
             this.documentIcon2 = new Droid_People.DocumentIcon();
             this.documentIcon3 = new Droid_People.DocumentIcon();
             this.documentIcon4 = new Droid_People.DocumentIcon();
+            this.comboBoxNationality = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -472,13 +472,6 @@
             this.textBoxFirstname.Size = new System.Drawing.Size(245, 20);
             this.textBoxFirstname.TabIndex = 34;
             // 
-            // textBoxNationality
-            // 
-            this.textBoxNationality.Location = new System.Drawing.Point(350, 127);
-            this.textBoxNationality.Name = "textBoxNationality";
-            this.textBoxNationality.Size = new System.Drawing.Size(245, 20);
-            this.textBoxNationality.TabIndex = 36;
-            // 
             // textBoxActivity
             // 
             this.textBoxActivity.Location = new System.Drawing.Point(350, 153);
@@ -676,6 +669,15 @@
             this.documentIcon4.Size = new System.Drawing.Size(149, 55);
             this.documentIcon4.TabIndex = 19;
             // 
+            // comboBoxNationality
+            // 
+            this.comboBoxNationality.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxNationality.FormattingEnabled = true;
+            this.comboBoxNationality.Location = new System.Drawing.Point(350, 127);
+            this.comboBoxNationality.Name = "comboBoxNationality";
+            this.comboBoxNationality.Size = new System.Drawing.Size(245, 21);
+            this.comboBoxNationality.TabIndex = 53;
+            // 
             // PersonView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -683,6 +685,7 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.comboBoxNationality);
             this.Controls.Add(this.dateTimePickerBirthday);
             this.Controls.Add(this.textBoxNickName);
             this.Controls.Add(this.textBoxMail);
@@ -696,7 +699,6 @@
             this.Controls.Add(this.labelTitleMail);
             this.Controls.Add(this.comboBoxGender);
             this.Controls.Add(this.textBoxActivity);
-            this.Controls.Add(this.textBoxNationality);
             this.Controls.Add(this.textBoxFirstname);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.buttonSave);
@@ -781,7 +783,6 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxFirstname;
-        private System.Windows.Forms.TextBox textBoxNationality;
         private System.Windows.Forms.TextBox textBoxActivity;
         private System.Windows.Forms.ComboBox comboBoxGender;
         private System.Windows.Forms.Label labelTitleMail;
@@ -796,5 +797,6 @@
         private System.Windows.Forms.TextBox textBoxNickName;
         private System.Windows.Forms.ImageList imageList32;
         private System.Windows.Forms.DateTimePicker dateTimePickerBirthday;
+        private System.Windows.Forms.ComboBox comboBoxNationality;
     }
 }

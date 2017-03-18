@@ -8,12 +8,14 @@ using Tools4Libraries;
 
 namespace Droid_People
 {
-    public delegate void InterfaceEventHandler();
+    public delegate void InterfaceEventHandler(object o);
     public class Interface_people : GPInterface
     {
         #region Attribute
         public readonly int TOP_OFFSET = 175;
+
         public event InterfaceEventHandler SheetDisplayRequested;
+        public event InterfaceEventHandler PeopleChanged;
 
         private ToolStripMenuPeople _tsm;
         private Panel _sheet;
@@ -135,6 +137,7 @@ namespace Droid_People
             _sheet.Resize += _sheet_Resize;
             
             _viewDetail = new PersonView(this);
+            _viewDetail.PersonChanged += _viewDetail_PersonChanged;
             _viewDetail.Name = "CurrentView";
 
             _viewWebResult = new PanelCustom(new ViewWebResult(this));
@@ -149,7 +152,6 @@ namespace Droid_People
             BuildToolBar();
             LaunchLoad();
         }
-
         private void LaunchOpen()
         {
             _sheet.Controls.Clear();
@@ -167,7 +169,7 @@ namespace Droid_People
                 _viewDetail.ChangeLanguage();
                 _viewDetail.IsEditable = false;
                 _sheet.Controls.Add(_viewDetail);
-                if (SheetDisplayRequested != null) SheetDisplayRequested();
+                if (SheetDisplayRequested != null) SheetDisplayRequested(null);
             }
         }
         private void LaunchCreate()
@@ -183,7 +185,7 @@ namespace Droid_People
             _viewDetail.ChangeLanguage();
             _viewDetail.IsEditable = true;
             _sheet.Controls.Add(_viewDetail);
-            if (SheetDisplayRequested != null) SheetDisplayRequested();
+            if (SheetDisplayRequested != null) SheetDisplayRequested(null);
         }
         private void LaunchEdit()
         {
@@ -198,7 +200,7 @@ namespace Droid_People
                 _viewDetail.ChangeLanguage();
                 _viewDetail.IsEditable = true;
                 _sheet.Controls.Add(_viewDetail);
-                if (SheetDisplayRequested != null) SheetDisplayRequested();
+                if (SheetDisplayRequested != null) SheetDisplayRequested(null);
             }
         }
         private void LaunchDetail()
@@ -214,7 +216,7 @@ namespace Droid_People
                 _viewDetail.ChangeLanguage();
                 _viewDetail.IsEditable = false;
                 _sheet.Controls.Add(_viewDetail);
-                if (SheetDisplayRequested != null) SheetDisplayRequested();
+                if (SheetDisplayRequested != null) SheetDisplayRequested(null);
             }
         }
         private void LaunchWeb()
@@ -226,7 +228,7 @@ namespace Droid_People
             _viewWebResult.Left = (_sheet.Width / 2) - (_viewWebResult.Width / 2);
             _viewWebResult.ChangeLanguage();
             _sheet.Controls.Add(_viewWebResult);
-            if (SheetDisplayRequested != null) SheetDisplayRequested();
+            if (SheetDisplayRequested != null) SheetDisplayRequested(null);
         }
         private void LaunchSearch()
         {
@@ -237,7 +239,7 @@ namespace Droid_People
             _viewSearch.Left = (_sheet.Width / 2) - (_viewSearch.Width / 2);
             _viewSearch.ChangeLanguage();
             _sheet.Controls.Add(_viewSearch);
-            if (SheetDisplayRequested != null) SheetDisplayRequested();
+            if (SheetDisplayRequested != null) SheetDisplayRequested(null);
         }
         private void LaunchLoad()
         {
@@ -273,6 +275,10 @@ namespace Droid_People
         {
             _currentPerson = o as Person;
             LaunchDetail();
+        }
+        private void _viewDetail_PersonChanged(object o)
+        {
+            if (PeopleChanged != null) { PeopleChanged(o); }
         }
         #endregion
     }

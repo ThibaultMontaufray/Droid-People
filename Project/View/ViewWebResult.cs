@@ -14,6 +14,8 @@ namespace Droid_People
     public partial class ViewWebResult : UserControlCustom
     {
         #region Attribute
+        public override event UserControlCustomEventHandler HeightChanged;
+
         private Interface_people _intPeo;
         #endregion
 

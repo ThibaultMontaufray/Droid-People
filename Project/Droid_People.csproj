@@ -47,6 +47,14 @@
       <HintPath>packages\ControlzEx.2.0.1.61\lib\net45\ControlzEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Droid-Geography, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Dev\Assistant_booking\packages\Droid_Geography.1.0.0\lib\4.5.1\Droid-Geography.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Droid-Geography.vshost, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86">
+      <HintPath>..\..\..\Dev\Assistant_booking\packages\Droid_Geography.1.0.0\lib\4.5.1\Droid-Geography.vshost.exe</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Droid_Image, Version=1.0.6265.39373, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Droid_Image.1.0.1\lib\4.5.1\Droid_Image.dll</HintPath>
       <Private>True</Private>
