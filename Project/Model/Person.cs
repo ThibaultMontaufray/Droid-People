@@ -318,6 +318,10 @@ namespace Droid_People
             //p._workingDirectory = _workingDirectory;
             return p;
         }
+        public override string ToString()
+        {
+            return string.Format("{0} {1}", _firstname.Firstname, _familyName.ToUpper());
+        }
         public void Save(string path)
         {
             //SaveFile(GenerateXml());
@@ -351,7 +355,7 @@ namespace Droid_People
 
             foreach (Person person in persons)
             {
-                if (personText.Equals(string.Format("{0} {1}", person.FirstName.Firstname, person.FamilyName)))
+                if (personText.Equals(person.ToString()))
                 {
                     return person;
                 }
