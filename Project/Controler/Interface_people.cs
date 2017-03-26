@@ -18,7 +18,6 @@ namespace Droid_People
         public event InterfaceEventHandler PeopleChanged;
 
         private ToolStripMenuPeople _tsm;
-        private Panel _sheet;
         private string _workingDirectory;
         
         private PersonView _viewDetail;
@@ -131,6 +130,7 @@ namespace Droid_People
             _persons = new List<Person>();
 
             _sheet = new Panel();
+            _sheet.Name = "SheetPeople";
             _sheet.BackgroundImage = Properties.Resources.ShieldTileBg;
             _sheet.BackgroundImageLayout = ImageLayout.Tile;
             _sheet.Dock = DockStyle.Fill;

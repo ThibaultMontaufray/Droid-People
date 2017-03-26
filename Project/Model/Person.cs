@@ -320,7 +320,7 @@ namespace Droid_People
         }
         public override string ToString()
         {
-            return string.Format("{0} {1}", _firstname.Firstname, _familyName.ToUpper());
+            return string.Format("{0} {1}", (_firstname != null && !string.IsNullOrEmpty(_firstname.Firstname)) ? _firstname.Firstname : "_______", !string.IsNullOrEmpty(_familyName) ? _familyName.ToUpper() : "_______");
         }
         public void Save(string path)
         {
