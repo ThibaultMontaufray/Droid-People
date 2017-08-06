@@ -165,6 +165,8 @@ namespace Droid_People
                 labelMail.Text = _intPeo.CurrentPerson.Mail;
                 labelNickname.Text = _intPeo.CurrentPerson.Nickname;
                 textBoxComment.Text = _intPeo.CurrentPerson.Comment;
+                textBoxActivity.Text = _intPeo.CurrentPerson.Activities.Count > 0 ? _intPeo.CurrentPerson.Activities[0].Name : string.Empty;
+                labelActivity.Text = _intPeo.CurrentPerson.Activities.Count > 0 ? _intPeo.CurrentPerson.Activities[0].Name : string.Empty;
                 dateTimePickerBirthday.Value = _intPeo.CurrentPerson.Birthday == DateTime.MinValue ? DateTime.Now.AddYears(-100) : _intPeo.CurrentPerson.Birthday;
 
                 foreach (var item in comboBoxGender.Items)
@@ -344,6 +346,7 @@ namespace Droid_People
             _intPeo.CurrentPerson.Comment = textBoxComment.Text;
             _intPeo.CurrentPerson.Pictures.Clear();
             _intPeo.CurrentPerson.SerializedPicture.Clear();
+            if (_intPeo.CurrentPerson.Activities.Where(a => a.Name.Equals(textBoxActivity.Text)).Count() == 0) _intPeo.CurrentPerson.Activities.Add(new Activities(textBoxActivity.Text));
             if (pictureBox1.BackgroundImage != null && !"Default".Equals(pictureBox1.Tag)) _intPeo.CurrentPerson.Pictures.Add(pictureBox1.BackgroundImage);
             if (pictureBox2.BackgroundImage != null && !"Default".Equals(pictureBox2.Tag))
             {

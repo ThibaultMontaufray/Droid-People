@@ -70,6 +70,15 @@ namespace Droid_People.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Age.
+        /// </summary>
+        internal static string Age {
+            get {
+                return ResourceManager.GetString("Age", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Date d&apos;anniversaire.
         /// </summary>
         internal static string Birthday {
@@ -93,6 +102,15 @@ namespace Droid_People.Properties {
         internal static string Create {
             get {
                 return ResourceManager.GetString("Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nationalités présentes.
+        /// </summary>
+        internal static string currentNationalities {
+            get {
+                return ResourceManager.GetString("currentNationalities", resourceCulture);
             }
         }
         
@@ -169,6 +187,15 @@ namespace Droid_People.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Menu.
+        /// </summary>
+        internal static string Menu {
+            get {
+                return ResourceManager.GetString("Menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Nationalité.
         /// </summary>
         internal static string Nationality {
@@ -232,20 +259,20 @@ namespace Droid_People.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
-        /// </summary>
-        internal static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Prénom.
         /// </summary>
         internal static string Surname {
             get {
                 return ResourceManager.GetString("Surname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Inconnu.
+        /// </summary>
+        internal static string Unknown {
+            get {
+                return ResourceManager.GetString("Unknown", resourceCulture);
             }
         }
         

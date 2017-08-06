@@ -12,15 +12,17 @@ namespace Droid_People
     public class Interface_people : GPInterface
     {
         #region Attribute
-        public readonly int TOP_OFFSET = 175;
+        public readonly int TOP_OFFSET = 150;
 
         public event InterfaceEventHandler SheetDisplayRequested;
         public event InterfaceEventHandler PeopleChanged;
+        public event InterfaceEventHandler PeopleDetailRequested;
 
         private ToolStripMenuPeople _tsm;
         private string _workingDirectory;
         
         private PersonView _viewDetail;
+        private ViewWelcome _viewWelcome;
         private PanelCustom _viewSearch;
         private PanelCustom _viewWebResult;
 
@@ -38,11 +40,6 @@ namespace Droid_People
         {
             get { return _currentPerson; }
             set { _currentPerson = value; }
-        }
-        public Panel Sheet
-        {
-            get { return _sheet; }
-            set { _sheet = value; }
         }
         public ToolStripMenuPeople Tsm
         {
@@ -105,6 +102,9 @@ namespace Droid_People
         {
             switch (action)
             {
+                case "Menu":
+                    LaunchViewWelcome();
+                    break;
                 case "Search":
                     LaunchSearch();
                     break;
@@ -148,6 +148,13 @@ namespace Droid_People
             vus.RequestUserEdition += _viewSearch_RequestUserEdition;
             _viewSearch = new PanelCustom(vus);
             _viewSearch.Name = "CurrentView";
+
+            _viewWelcome = new ViewWelcome(this);
+            _viewWelcome.Top = TOP_OFFSET;
+            _viewWelcome.Left = (_sheet.Width / 2) - (_viewWelcome.Width / 2);
+            _viewWelcome.Name = "CurrentView";
+            _viewWelcome.UserDetailRequested += _viewWelcome_UserDetailRequested;
+            _sheet.Controls.Add(_viewWelcome);
 
             BuildToolBar();
             LaunchLoad();
@@ -244,9 +251,7 @@ namespace Droid_People
         private void LaunchLoad()
         {
             Person p;
-
-            _sheet.Controls.Clear();
-
+            
             _tsm.StartRefreshLib();
             _persons.Clear();
             foreach (string dir in Directory.GetDirectories(_workingDirectory))
@@ -259,9 +264,25 @@ namespace Droid_People
             }
             _tsm.EndRefreshLib();
         }
+        private void LaunchViewWelcome()
+        {
+            _sheet.Controls.Clear();
+
+            _viewWelcome.Top = TOP_OFFSET;
+            _viewWelcome.RefreshData();
+            _viewWelcome.Left = (_sheet.Width / 2) - (_viewWelcome.Width / 2);
+            _viewWelcome.ChangeLanguage();
+            _sheet.Controls.Add(_viewWelcome);
+            if (SheetDisplayRequested != null) SheetDisplayRequested(null);
+        }
         #endregion
 
         #region Event
+        private void _viewWelcome_UserDetailRequested(object o)
+        {
+            _currentPerson = o as Person;
+            LaunchDetail();
+        }
         private void _sheet_Resize(object sender, EventArgs e)
         {
             Resize();

@@ -49,5 +49,12 @@
             set { _firstname = value; }
         }
         #endregion
+
+        #region Methods publice
+        public override string ToString()
+        {
+            return this.Firstname;
+        }
+        #endregion
     }
 }

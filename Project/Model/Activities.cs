@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Droid_People
 {
+    [Serializable]
     public class Activities
     {
         #region Attribute
@@ -36,6 +37,10 @@ namespace Droid_People
         public Activities()
         {
 
+        }
+        public Activities(string name)
+        {
+            _name = name;
         }
         #endregion
 

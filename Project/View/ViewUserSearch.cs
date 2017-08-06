@@ -70,7 +70,7 @@ namespace Droid_People
         #endregion
 
         #region Methods public
-        public void RefreshData()
+        public override void RefreshData()
         {
             comboBoxNationality.Items.Clear();
             comboBoxNationality.Items.Add("All");
@@ -81,8 +81,9 @@ namespace Droid_People
                     if (!comboBoxNationality.Items.Contains(person.Nationality)) { comboBoxNationality.Items.Add(person.Nationality); }
                 }
             }
+            SearchUser();
         }
-        public void ChangeLanguage()
+        public override void ChangeLanguage()
         {
             ColumnName.HeaderText = GetText.Text("Firstname");
             ColumnFamilyName.HeaderText = GetText.Text("Name");
@@ -123,10 +124,11 @@ namespace Droid_People
             LoadCountries();
 
             _dgvSearchPerson.Visible = _dgvSearchPerson.Rows.Count != 0;
-            _dgvSearchPerson.Height = (_dgvSearchPerson.Rows.Count * 22) + _dgvSearchPerson.ColumnHeadersHeight;
+            //_dgvSearchPerson.Height = (_dgvSearchPerson.Rows.Count * 24) + _dgvSearchPerson.ColumnHeadersHeight;
 
             _dgvSearchPerson.Columns[_dgvSearchPerson.Columns.IndexOf(ColumnId)].Visible = false;
             ChangeLanguage();
+            RefreshData();
         }
         private void InitializeComponent()
         {
@@ -160,6 +162,9 @@ namespace Droid_People
             this._dgvSearchPerson.AllowUserToDeleteRows = false;
             this._dgvSearchPerson.AllowUserToOrderColumns = true;
             this._dgvSearchPerson.AllowUserToResizeRows = false;
+            this._dgvSearchPerson.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._dgvSearchPerson.BackgroundColor = System.Drawing.Color.Gray;
             this._dgvSearchPerson.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this._dgvSearchPerson.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -178,9 +183,9 @@ namespace Droid_People
             this._dgvSearchPerson.MultiSelect = false;
             this._dgvSearchPerson.Name = "_dgvSearchPerson";
             this._dgvSearchPerson.RowHeadersVisible = false;
-            this._dgvSearchPerson.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this._dgvSearchPerson.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this._dgvSearchPerson.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this._dgvSearchPerson.Size = new System.Drawing.Size(672, 228);
+            this._dgvSearchPerson.Size = new System.Drawing.Size(672, 392);
             this._dgvSearchPerson.TabIndex = 24;
             this._dgvSearchPerson.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._dgvSearchUser_CellClick);
             // 
@@ -362,7 +367,7 @@ namespace Droid_People
             this.Controls.Add(this.textBoxFirstname);
             this.Controls.Add(this.buttonValidation);
             this.Name = "ViewUserSearch";
-            this.Size = new System.Drawing.Size(672, 320);
+            this.Size = new System.Drawing.Size(672, 484);
             ((System.ComponentModel.ISupportInitialize)(this._dgvSearchPerson)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -399,7 +404,7 @@ namespace Droid_People
 
             LoadFilteredUsers();
             _dgvSearchPerson.Visible = _dgvSearchPerson.Rows.Count != 0;
-            _dgvSearchPerson.Height = (_dgvSearchPerson.Rows.Count * 22) + _dgvSearchPerson.ColumnHeadersHeight;
+            //_dgvSearchPerson.Height = (_dgvSearchPerson.Rows.Count * 22) + _dgvSearchPerson.ColumnHeadersHeight;
         }
         private void LoadFilteredUsers()
         {

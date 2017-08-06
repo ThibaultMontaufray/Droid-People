@@ -12,6 +12,7 @@ using Tools4Libraries;
 
 namespace Droid_People
 {
+    [Serializable]
     public class Person : ICloneable
     {
         #region Enum
@@ -25,6 +26,10 @@ namespace Droid_People
         #endregion
 
         #region Attribute
+        private const int DEFAULTATTRIBUTSLEVEL = 10;
+
+        private Caracteristics _caracteristics;
+        private Humors _currentHumors;
         private string _familyName;
         private FirstName _firstname;
         private string _nickName;
@@ -56,6 +61,12 @@ namespace Droid_People
         public List<string> Documents
         {
             get { return _documents; }
+        }
+        [JsonProperty(PropertyName = "caracteristics")]
+        public Caracteristics Caracteristics
+        {
+            get { return _caracteristics; }
+            set { _caracteristics = value; }
         }
         [JsonProperty(PropertyName = "firstname")]
         public FirstName FirstName
@@ -234,24 +245,15 @@ namespace Droid_People
             get { return _mail; }
             set { _mail = value; }
         }
+        [JsonProperty(PropertyName = "humors")]
+        public Humors CurrentHumors
+        {
+            get { return _currentHumors; }
+            set { _currentHumors = value; }
+        }
         #endregion
 
         #region Constructor
-        //public Person()
-        //{
-        //    //Random rand = new Random((int)DateTime.Now.Ticks);
-        //    //_id = string.Format("people.{0}-{1}-{2}", rand.Next(), (int)DateTime.Now.Ticks, rand.Next());
-
-        //    _gender = GENDER.UNKNOW;
-        //    _chiefs = new List<Person>();
-        //    _teamMembers = new List<Person>();
-        //    _serializedPictures = new List<string>();
-        //    _activities = new List<Droid_People.Activities>();
-        //    _projects = new List<Project>();
-        //    _skills = new List<Skill>();
-        //    _documents = new List<string>();
-        //    //_workingDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Servodroid\Droid-People", _id);
-        //}
         public Person()
         {
             Random rand = new Random((int)DateTime.Now.Ticks);
@@ -265,6 +267,8 @@ namespace Droid_People
             _projects = new List<Project>();
             _skills = new List<Skill>();
             _documents = new List<string>();
+            _caracteristics = new Caracteristics(DEFAULTATTRIBUTSLEVEL);
+            _firstname = new FirstName();
             //_workingDirectory = Path.Combine(workingDirectory, _id);
         }
         public Person(string firstname, string familyname)
@@ -289,9 +293,27 @@ namespace Droid_People
             _projects = new List<Project>();
             _skills = new List<Skill>();
             _documents = new List<string>();
+            _firstname = new FirstName();
             //_workingDirectory = Path.Combine(workingDirectory, _id);
 
             LoadPerson(pathFile);
+        }
+        public Person(string id, List<string[]> dumpDatabaseInfo, List<string[]> dumpDatabaseAttributs) : base()
+        {
+            _gender = GENDER.UNKNOW;
+            _chiefs = new List<Person>();
+            _teamMembers = new List<Person>();
+            _serializedPictures = new List<string>();
+            _activities = new List<Droid_People.Activities>();
+            _projects = new List<Project>();
+            _skills = new List<Skill>();
+            _documents = new List<string>();
+            _caracteristics = new Caracteristics(DEFAULTATTRIBUTSLEVEL);
+            _firstname = new FirstName();
+
+            _id = id;
+            LoadAttributs(dumpDatabaseAttributs);
+            LoadInformation(dumpDatabaseInfo);
         }
         #endregion
 
@@ -315,6 +337,27 @@ namespace Droid_People
             p._projects = _projects;
             p._skills = _skills;
             p._teamMembers = _teamMembers;
+
+            p._caracteristics.Perception = _caracteristics.Perception;
+            p._caracteristics.Franchise = _caracteristics.Franchise;
+            p._caracteristics.Vivacite = _caracteristics.Vivacite;
+            p._caracteristics.Coordination = _caracteristics.Coordination;
+            p._caracteristics.Humilite = _caracteristics.Humilite;
+            p._caracteristics.Crualite = _caracteristics.Crualite;
+            p._caracteristics.Instinct_de_survie = _caracteristics.Instinct_de_survie;
+            p._caracteristics.Patience = _caracteristics.Patience;
+            p._caracteristics.Determination = _caracteristics.Determination;
+            p._caracteristics.Imagination = _caracteristics.Imagination;
+            p._caracteristics.Curiosite = _caracteristics.Curiosite;
+            p._caracteristics.Agressivite = _caracteristics.Agressivite;
+            p._caracteristics.Loyaute = _caracteristics.Loyaute;
+            p._caracteristics.Empathie = _caracteristics.Empathie;
+            p._caracteristics.Tenacite = _caracteristics.Tenacite;
+            p._caracteristics.Courage = _caracteristics.Courage;
+            p._caracteristics.Sensualite = _caracteristics.Sensualite;
+            p._caracteristics.Charme = _caracteristics.Charme;
+            p._caracteristics.Humour = _caracteristics.Humour;
+
             //p._workingDirectory = _workingDirectory;
             return p;
         }
@@ -368,9 +411,36 @@ namespace Droid_People
             if (lst.Count > 0) return lst.First();
             else return null;
         }
+        public static string GetFullName(Person person)
+        {
+            string fullName = string.Empty;
+
+            if (!string.IsNullOrEmpty(person.FamilyName) && !string.IsNullOrEmpty(person.FirstName.Firstname)) { fullName = person.FirstName.Firstname.Substring(0, 1).ToUpper() + person.FirstName.Firstname.Substring(1, person.FirstName.Firstname.Length - 1).ToLower() + " " + person.FamilyName.ToUpper(); }
+            else if (string.IsNullOrEmpty(person.FamilyName) && !string.IsNullOrEmpty(person.FirstName.Firstname)) { fullName = person.FamilyName.ToUpper(); }
+            else if (!string.IsNullOrEmpty(person.FamilyName) && string.IsNullOrEmpty(person.FirstName.Firstname)) { fullName = person.FirstName.Firstname.Substring(0, 1).ToUpper() + person.FirstName.Firstname.Substring(1, person.FirstName.Firstname.Length - 1).ToLower(); }
+            else { fullName = "UNKNOW PERSON"; }
+
+            return fullName;
+        }
         #endregion
 
         #region Methods private
+        private void SaveFile(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            if (!Directory.Exists(Path.Combine(path, _id)))
+            {
+                Directory.CreateDirectory(Path.Combine(path, _id));
+            }
+            string filePath = Path.Combine(path, string.Format("{0}//{0}.xml", _id));
+            using (StreamWriter sw = new StreamWriter(filePath, false))
+            {
+                sw.Write(JsonConvert.SerializeObject(this));
+            }
+        }
         private void Import(Person source, Person target)
         {
             target._activities = source._activities;
@@ -391,6 +461,27 @@ namespace Droid_People
             target._skills = source._skills;
             target._teamMembers = source._teamMembers;
             //target._workingDirectory = _workingDirectory;
+
+            target.Caracteristics = new Caracteristics();
+            target.Caracteristics.Perception = source.Caracteristics.Perception;
+            target.Caracteristics.Franchise = source.Caracteristics.Franchise;
+            target.Caracteristics.Vivacite = source.Caracteristics.Vivacite;
+            target.Caracteristics.Coordination = source.Caracteristics.Coordination;
+            target.Caracteristics.Humilite = source.Caracteristics.Humilite;
+            target.Caracteristics.Crualite = source.Caracteristics.Crualite;
+            target.Caracteristics.Instinct_de_survie = source.Caracteristics.Instinct_de_survie;
+            target.Caracteristics.Patience = source.Caracteristics.Patience;
+            target.Caracteristics.Determination = source.Caracteristics.Determination;
+            target.Caracteristics.Imagination = source.Caracteristics.Imagination;
+            target.Caracteristics.Curiosite = source.Caracteristics.Curiosite;
+            target.Caracteristics.Agressivite = source.Caracteristics.Agressivite;
+            target.Caracteristics.Loyaute = source.Caracteristics.Loyaute;
+            target.Caracteristics.Empathie = source.Caracteristics.Empathie;
+            target.Caracteristics.Tenacite = source.Caracteristics.Tenacite;
+            target.Caracteristics.Courage = source.Caracteristics.Courage;
+            target.Caracteristics.Sensualite = source.Caracteristics.Sensualite;
+            target.Caracteristics.Charme = source.Caracteristics.Charme;
+            target.Caracteristics.Humour = source.Caracteristics.Humour;
 
             source = null;
         }
@@ -425,23 +516,90 @@ namespace Droid_People
                 }
             }
         }
-        private void SaveFile(string path)
+        private void LoadAttributs(List<string[]> attributs)
         {
-            if (!Directory.Exists(path))
+            foreach (string[] row in attributs)
             {
-                Directory.CreateDirectory(path);
-            }
-            if (!Directory.Exists(Path.Combine(path, _id)))
-            {
-                Directory.CreateDirectory(Path.Combine(path, _id));
-            }
-            string filePath = Path.Combine(path, string.Format("{0}//{0}.xml", _id));
-            using (StreamWriter sw = new StreamWriter(filePath, false))
-            {
-                sw.Write(JsonConvert.SerializeObject(this));
+                switch (row[0].ToUpper())
+                {
+                    case "PERCEPTION":
+                        _caracteristics.Perception = int.Parse(row[1]);
+                        break;
+                    case "FRANCHISE":
+                        _caracteristics.Franchise = int.Parse(row[1]);
+                        break;
+                    case "VIVACITE":
+                        _caracteristics.Vivacite = int.Parse(row[1]);
+                        break;
+                    case "COORDINATION":
+                        _caracteristics.Coordination = int.Parse(row[1]);
+                        break;
+                    case "HUMILITE":
+                        _caracteristics.Humilite = int.Parse(row[1]);
+                        break;
+                    case "CRUALITE":
+                        _caracteristics.Crualite = int.Parse(row[1]);
+                        break;
+                    case "INSTINCT_DE_SURVIE":
+                        _caracteristics.Instinct_de_survie = int.Parse(row[1]);
+                        break;
+                    case "PATIENCE":
+                        _caracteristics.Patience = int.Parse(row[1]);
+                        break;
+                    case "DETERMINATION":
+                        _caracteristics.Determination = int.Parse(row[1]);
+                        break;
+                    case "IMAGINATION":
+                        _caracteristics.Imagination = int.Parse(row[1]);
+                        break;
+                    case "CURIOSITE":
+                        _caracteristics.Curiosite = int.Parse(row[1]);
+                        break;
+                    case "AGRESSIVITE":
+                        _caracteristics.Agressivite = int.Parse(row[1]);
+                        break;
+                    case "LOYAUTE":
+                        _caracteristics.Loyaute = int.Parse(row[1]);
+                        break;
+                    case "EMPATHIE":
+                        _caracteristics.Empathie = int.Parse(row[1]);
+                        break;
+                    case "TENACITE":
+                        _caracteristics.Tenacite = int.Parse(row[1]);
+                        break;
+                    case "COURAGE":
+                        _caracteristics.Courage = int.Parse(row[1]);
+                        break;
+                    case "SENSUALITE":
+                        _caracteristics.Sensualite = int.Parse(row[1]);
+                        break;
+                    case "CHARME":
+                        _caracteristics.Charme = int.Parse(row[1]);
+                        break;
+                    case "HUMOUR":
+                        _caracteristics.Perception = int.Parse(row[1]);
+                        break;
+                }
             }
         }
-
+        private void LoadInformation(List<string[]> info)
+        {
+            foreach (string[] row in info)
+            {
+                switch (row[0].ToUpper())
+                {
+                    case "NOM":
+                        _familyName = row[1];
+                        break;
+                    case "PRENOM":
+                        _firstname.Firstname = row[1];
+                        break;
+                    case "NATIONALITE":
+                        _nationality = row[1];
+                        break;
+                }
+            }
+        }
         private void LoadPersonXml(string pathFile)
         {
             if (File.Exists(pathFile))

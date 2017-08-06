@@ -47,18 +47,6 @@
       <HintPath>packages\ControlzEx.2.0.1.61\lib\net45\ControlzEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Droid-Geography, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Dev\Assistant_booking\packages\Droid_Geography.1.0.0\lib\4.5.1\Droid-Geography.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Droid-Geography.vshost, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86">
-      <HintPath>..\..\..\Dev\Assistant_booking\packages\Droid_Geography.1.0.0\lib\4.5.1\Droid-Geography.vshost.exe</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Droid_Image, Version=1.0.6265.39373, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Droid_Image.1.0.1\lib\4.5.1\Droid_Image.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Droid_web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Droid_Web.1.0.4\lib\4.5.1\Droid_web.dll</HintPath>
       <Private>True</Private>
@@ -110,6 +98,7 @@
       <HintPath>packages\Droid_Web.1.0.4\lib\4.5.1\System.Data.SqlServerCe.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Windows.Forms.Ribbon, Version=3.5.8.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\officeribbon.3.5.8.4\lib\net20\System.Windows.Forms.Ribbon.dll</HintPath>
       <Private>True</Private>
@@ -145,7 +134,9 @@
     <Compile Include="Controler\GetText.cs" />
     <Compile Include="Controler\PeopleControler.cs" />
     <Compile Include="Model\Activities.cs" />
+    <Compile Include="Model\Caracteristics.cs" />
     <Compile Include="Model\FirstName.cs" />
+    <Compile Include="Model\Humors.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Model\Skill.cs" />
@@ -163,6 +154,30 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceFrench.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UserDetail.Designer.cs">
+      <DependentUpon>UserDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UserList.Designer.cs">
+      <DependentUpon>UserList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserTile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UserTile.Designer.cs">
+      <DependentUpon>UserTile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewWelcome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\ViewWelcome.Designer.cs">
+      <DependentUpon>ViewWelcome.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Demo.cs">
       <SubType>Form</SubType>
@@ -225,11 +240,24 @@
       <DependentUpon>Demo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\prenom.csv" />
+    <EmbeddedResource Include="View\UserDetail.resx">
+      <DependentUpon>UserDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UserList.resx">
+      <DependentUpon>UserList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UserTile.resx">
+      <DependentUpon>UserTile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ViewUserSearch.resx">
       <DependentUpon>ViewUserSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ViewWebResult.resx">
       <DependentUpon>ViewWebResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ViewWelcome.resx">
+      <DependentUpon>ViewWelcome.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Scripts\jquery-2.1.1.min.map" />
     <EmbeddedResource Include="View\DocumentIcon.resx">
@@ -268,6 +296,17 @@
     <None Include="Resources\backgrounPerson.png" />
     <None Include="Resources\lexBg.jpg" />
     <None Include="Resources\ShieldTileBgWhite.png" />
+    <None Include="Resources\userTileGreen.jpg" />
+    <None Include="Resources\userTileRed.png" />
+    <None Include="Resources\userTileGreen.png" />
+    <None Include="Resources\transparent1.png" />
+    <None Include="Resources\transparent2.png" />
+    <None Include="Resources\transparent3.png" />
+    <None Include="Resources\transparent4.png" />
+    <None Include="Resources\transparent5.png" />
+    <None Include="Resources\transparent6.png" />
+    <None Include="Resources\transparent7.png" />
+    <None Include="Resources\transparent8.png" />
     <Content Include="ServoPeople.ico" />
     <Content Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -275,6 +314,18 @@
     <Content Include="Scripts\nugetexample.js" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Droid-Geography\Project\Droid-Geography.csproj">
+      <Project>{530856d4-8d7f-4682-a071-f212c52d9274}</Project>
+      <Name>Droid-Geography</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Droid-Image\Project\Droid_Image.csproj">
+      <Project>{9fd7aaf3-3236-474a-9017-be10bf369e7e}</Project>
+      <Name>Droid_Image</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tools4Libraries\Slider\Slider.csproj">
+      <Project>{5a910b52-6ab0-4f84-875d-fff8893a4383}</Project>
+      <Name>Slider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Tools4Libraries\Tools4Libraries.csproj">
       <Project>{aad2b1be-9b2d-455d-8dd4-64e4e84dd985}</Project>
       <Name>Tools4Libraries</Name>

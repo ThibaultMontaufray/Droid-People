@@ -14,6 +14,7 @@ namespace Droid_People
         public event EventHandlerAction ActionAppened;
 
         private RibbonPanel _panelUser;
+        private RibbonButton _rbWelcome;
         private RibbonButton _search;
         private RibbonButton _load;
         private RibbonButton _create;
@@ -34,6 +35,7 @@ namespace Droid_People
         #region Methods public
         public void ChangeLanguage()
         {
+            _rbWelcome.Text = GetText.Text("Menu");
             _open.Text = GetText.Text("Open");
             _load.Text = GetText.Text("LoadRepertory");
             _search.Text = GetText.Text("Search");
@@ -62,6 +64,12 @@ namespace Droid_People
         }
         private void BuildPanelUser()
         {
+            _rbWelcome = new RibbonButton("Menu");
+            _rbWelcome.Name = "Menu";
+            _rbWelcome.Image = Tools4Libraries.Resources.ResourceIconSet32Default.home_page;
+            _rbWelcome.SmallImage = Tools4Libraries.Resources.ResourceIconSet16Default.home_page;
+            _rbWelcome.Click += _buttonClick;
+
             _open = new RibbonButton(GetText.Text("Open"));
             _open.Name = "Open";
             _open.Image = Tools4Libraries.Resources.ResourceIconSet32Default.folder_user;
@@ -81,7 +89,7 @@ namespace Droid_People
             _search.Image = Tools4Libraries.Resources.ResourceIconSet32Default.filter;
             _search.SmallImage = Tools4Libraries.Resources.ResourceIconSet16Default.filter;
             _search.Click += _buttonClick;
-
+            
             _create = new RibbonButton(GetText.Text("Create"));
             _create.Name = "Create";
             _create.Image = Tools4Libraries.Resources.ResourceIconSet32Default.user_edit;
@@ -95,6 +103,7 @@ namespace Droid_People
             _webActivity.Click += _buttonClick;
 
             _panelUser = new RibbonPanel("Person");
+            _panelUser.Items.Add(_rbWelcome);
             _panelUser.Items.Add(_open);
             _panelUser.Items.Add(_load);
             _panelUser.Items.Add(_search);

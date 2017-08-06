@@ -132,6 +132,9 @@
   <data name="Culture" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="currentNationalities" xml:space="preserve">
+    <value>Current nationalities</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
@@ -182,5 +185,14 @@
   </data>
   <data name="WebActivity" xml:space="preserve">
     <value>WebActivity</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
   </data>
 </root>
