@@ -32,7 +32,7 @@ namespace Droid_People
         #endregion
 
         #region Methods public
-        public void ChangeLanguage()
+        public override void ChangeLanguage()
         {
             labelSelectPerson.Text = GetText.Text("SelectPerson");
             labelTitleFirstName.Text = GetText.Text("FirstName");
@@ -40,7 +40,7 @@ namespace Droid_People
             labelTitleDescription.Text = GetText.Text("Description");
             labelTitleOrigine.Text = GetText.Text("Origine");
         }
-        public void RefreshData()
+        public override void RefreshData()
         {
             string persoText;
             comboBoxPersons.Items.Clear();

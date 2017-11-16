@@ -54,7 +54,7 @@ namespace Droid_People
         #endregion
 
         #region Constructor
-        public Interface_people(string workingDirectory)
+        public Interface_people(string workingDirectory = null)
         {
             _workingDirectory = workingDirectory;
 
@@ -63,25 +63,6 @@ namespace Droid_People
         #endregion
 
         #region Methods public
-        #region Methods Public override
-        public override void GlobalAction(object sender, EventArgs e)
-        {
-            ToolBarEventArgs tbea = e as ToolBarEventArgs;
-            string action = tbea.EventText;
-            GoAction(action);
-        }
-        public override void Resize()
-        {
-            foreach (Control ctrl in _sheet.Controls)
-            {
-                if (ctrl.Name.Equals("CurrentView"))
-                {
-                    ctrl.Left = (_sheet.Width / 2) - (ctrl.Width / 2);
-                }
-            }
-        }
-        #endregion
-
         public System.Windows.Forms.RibbonTab BuildToolBar()
         {
             _tsm = new ToolStripMenuPeople();
@@ -98,7 +79,7 @@ namespace Droid_People
         //}
         #endregion
 
-        public void GoAction(string action)
+        public override void GoAction(string action)
         {
             switch (action)
             {
@@ -254,12 +235,15 @@ namespace Droid_People
             
             _tsm.StartRefreshLib();
             _persons.Clear();
-            foreach (string dir in Directory.GetDirectories(_workingDirectory))
-            {
-                if (dir.Replace(Path.GetDirectoryName(dir) + "\\", string.Empty).StartsWith("people."))
+            if (!string.IsNullOrEmpty(_workingDirectory))
+            { 
+                foreach (string dir in Directory.GetDirectories(_workingDirectory))
                 {
-                    p = new Person(dir);
-                    _persons.Add(p);
+                    if (dir.Replace(Path.GetDirectoryName(dir) + "\\", string.Empty).StartsWith("people."))
+                    {
+                        p = new Person(dir);
+                        _persons.Add(p);
+                    }
                 }
             }
             _tsm.EndRefreshLib();

@@ -195,4 +195,7 @@
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
   </data>
+  <data name="People" xml:space="preserve">
+    <value>People</value>
+  </data>
 </root>

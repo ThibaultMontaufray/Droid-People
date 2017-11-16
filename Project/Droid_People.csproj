@@ -259,6 +259,7 @@
       <DependentUpon>ViewWelcome.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="Resources\jvectormap.jquery.json" />
     <None Include="Scripts\jquery-2.1.1.min.map" />
     <EmbeddedResource Include="View\DocumentIcon.resx">
       <DependentUpon>DocumentIcon.cs</DependentUpon>
@@ -272,7 +273,9 @@
     <EmbeddedResource Include="View\CreatePerson.resx">
       <DependentUpon>CreatePerson.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -307,6 +310,12 @@
     <None Include="Resources\transparent6.png" />
     <None Include="Resources\transparent7.png" />
     <None Include="Resources\transparent8.png" />
+    <None Include="Resources\backgrounPeople.png" />
+    <None Include="Resources\backgrounPeople1.png" />
+    <None Include="Resources\backgrounPeople11.png" />
+    <Content Include="Resources\jquery-jvectormap.css" />
+    <Content Include="Resources\jquery-jvectormap.js" />
+    <None Include="Resources\panelAgePyramid.BackgroundImage.png" />
     <Content Include="ServoPeople.ico" />
     <Content Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />

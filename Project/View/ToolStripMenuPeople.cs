@@ -41,6 +41,7 @@ namespace Droid_People
             _search.Text = GetText.Text("Search");
             _create.Text = GetText.Text("Create");
             _webActivity.Text = GetText.Text("WebActivity");
+            this.Text = GetText.Text("People");
         }
         public void EndRefreshLib()
         {
@@ -110,6 +111,7 @@ namespace Droid_People
             _panelUser.Items.Add(_create);
             _panelUser.Items.Add(_webActivity);
             this.Panels.Add(_panelUser);
+            this.Text = GetText.Text("People");
         }
         #endregion
 
