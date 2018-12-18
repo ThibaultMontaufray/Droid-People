@@ -1,4 +1,4 @@
-﻿namespace Droid_People
+﻿namespace Droid.People
 {
     partial class DocumentPreview
     {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace Droid_People
+namespace Droid.People
 {
     public delegate void DocumentIconEventHandler();
     public partial class DocumentIcon : UserControl

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Droid_People
+namespace Droid.People
 {
     public class Caracteristics
     {

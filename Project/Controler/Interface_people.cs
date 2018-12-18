@@ -6,19 +6,19 @@ using System.Linq;
 using System.Windows.Forms;
 using Tools4Libraries;
 
-namespace Droid_People
+namespace Droid.People
 {
-    public delegate void InterfaceEventHandler(object o);
-    public class Interface_people : GPInterface
+    public class InterfacePeople : GPInterface
     {
         #region Attribute
+        public static string WORKING_DIRECTORY = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Servodroid\Droid-People\";
         public readonly int TOP_OFFSET = 150;
 
         public event InterfaceEventHandler SheetDisplayRequested;
         public event InterfaceEventHandler PeopleChanged;
         public event InterfaceEventHandler PeopleDetailRequested;
 
-        private ToolStripMenuPeople _tsm;
+        private new ToolStripMenuPeople _tsm;
         private string _workingDirectory;
         
         private PersonView _viewDetail;
@@ -54,7 +54,7 @@ namespace Droid_People
         #endregion
 
         #region Constructor
-        public Interface_people(string workingDirectory = null)
+        public InterfacePeople(string workingDirectory = null)
         {
             _workingDirectory = workingDirectory;
 
@@ -108,9 +108,10 @@ namespace Droid_People
         #region Methods private
         private void Init()
         {
+            if (!Directory.Exists(WORKING_DIRECTORY)) { Directory.CreateDirectory(WORKING_DIRECTORY); }
             _persons = new List<Person>();
 
-            _sheet = new Panel();
+            _sheet = new PanelScrollableCustom();
             _sheet.Name = "SheetPeople";
             _sheet.BackgroundImage = Properties.Resources.ShieldTileBg;
             _sheet.BackgroundImageLayout = ImageLayout.Tile;
@@ -235,7 +236,7 @@ namespace Droid_People
             
             _tsm.StartRefreshLib();
             _persons.Clear();
-            if (!string.IsNullOrEmpty(_workingDirectory))
+            if (!string.IsNullOrEmpty(_workingDirectory) && Directory.Exists(_workingDirectory))
             { 
                 foreach (string dir in Directory.GetDirectories(_workingDirectory))
                 {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Droid_People.Properties {
+namespace Droid.People.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

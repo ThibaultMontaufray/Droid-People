@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tools4Libraries;
 
-namespace Droid_People
+namespace Droid.People
 {
     public delegate void UserListEventHandler(Person p);
     public partial class UserList : UserControl
@@ -17,7 +17,7 @@ namespace Droid_People
         #region Attribute
         public event UserListEventHandler PersonDetailRequested;
 
-        private PanelScrollable _panelScrollable;
+        private PanelScrollableCustom _panelScrollable;
         private const int NBTILE = 9;
         private List<Person> _persons;
         private int _currentOffset = 0;
@@ -111,9 +111,11 @@ namespace Droid_People
         {
             sliderTrackBar.Value = _panelScrollable.AutoScrollVPos;
         }
-        private void sliderTrackBar_ValueChanged(object sender, Tools4Libraries.Slider.SliderTrackBarValueChangedEventArgs e)
+        private void sliderTrackBar_ValueChanged(object sender, Tools.Slider.SliderTrackBarValueChangedEventArgs e)
         {
-            _panelScrollable.VerticalScroll.Value = System.Convert.ToInt32((sliderTrackBar.Maximum - sliderTrackBar.Value) * 60);
+            float val = (sliderTrackBar.Maximum - sliderTrackBar.Value) * 60;
+            if (val < 0) { val = 0; }
+            _panelScrollable.VerticalScroll.Value = System.Convert.ToInt32(val);
         }
         #endregion
     }

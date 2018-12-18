@@ -1,24 +1,22 @@
-﻿using Droid_People;
+﻿using Droid.People;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using Tools4Libraries;
 
-namespace Droid_People
+namespace Droid.People
 {
     public delegate void ViewUserEventHandler(object o);
     public class ViewUserSearch : UserControlCustom
     {
         #region Attribute
-        public override event UserControlCustomEventHandler HeightChanged;
-
         public event ViewUserEventHandler RequestUserDetail;
         public event ViewUserEventHandler RequestUserEdition;
 
         private readonly DataGridViewCellStyle cellStyle1 = new DataGridViewCellStyle() { BackColor = System.Drawing.Color.DarkGray };
         private readonly DataGridViewCellStyle cellStyle2 = new DataGridViewCellStyle() { BackColor = System.Drawing.Color.LightGray };
-        private Interface_people _intPeo;
+        private InterfacePeople _intPeo;
         private List<Person> _filteredUsers;
 
         private System.ComponentModel.IContainer components = null;
@@ -60,7 +58,7 @@ namespace Droid_People
             InitializeComponent();
             Init();
         }
-        public ViewUserSearch(Interface_people intBoo)
+        public ViewUserSearch(InterfacePeople intBoo)
         {
             _intPeo = intBoo;
 
@@ -377,7 +375,7 @@ namespace Droid_People
         {
             comboBoxGender.Items.Clear();
             comboBoxGender.Items.Add("All");
-            foreach (var item in Enum.GetValues(typeof(Person.GENDER)))
+            foreach (var item in Enum.GetValues(typeof(Gender)))
             {
                 comboBoxGender.Items.Add(item.ToString());
             }
@@ -397,9 +395,9 @@ namespace Droid_People
         {
             _filteredUsers = _intPeo.Persons;
 
-            if (!string.IsNullOrEmpty(textBoxFirstname.Text)) { _filteredUsers = _filteredUsers.Where(a => a.FirstName.Firstname == textBoxFirstname.Text).ToList(); }
-            if (!string.IsNullOrEmpty(textBoxFamilyName.Text)) { _filteredUsers = _filteredUsers.Where(a => a.FamilyName == textBoxFamilyName.Text).ToList(); }
-            if (comboBoxGender.SelectedItem != null && comboBoxGender.SelectedItem.ToString() != "All") { _filteredUsers = _filteredUsers.Where(a => a.Gender == (Person.GENDER)Enum.Parse(typeof(Person.GENDER), comboBoxGender.SelectedItem.ToString())).ToList(); }
+            if (!string.IsNullOrEmpty(textBoxFirstname.Text)) { _filteredUsers = _filteredUsers.Where(a => a.FirstName.Value == textBoxFirstname.Text).ToList(); }
+            if (!string.IsNullOrEmpty(textBoxFamilyName.Text)) { _filteredUsers = _filteredUsers.Where(a => a.Name == textBoxFamilyName.Text).ToList(); }
+            if (comboBoxGender.SelectedItem != null && comboBoxGender.SelectedItem.ToString() != "All") { _filteredUsers = _filteredUsers.Where(a => a.Gender == (Gender)Enum.Parse(typeof(Gender), comboBoxGender.SelectedItem.ToString())).ToList(); }
             if (comboBoxNationality.SelectedItem != null && comboBoxNationality.SelectedItem.ToString() != "All") { _filteredUsers = _filteredUsers.Where(a => a.Nationality == comboBoxNationality.SelectedItem.ToString()).ToList(); }
 
             LoadFilteredUsers();
@@ -421,27 +419,27 @@ namespace Droid_People
                     cell.Style = altenate ? cellStyle1 : cellStyle2;
                     cell.Style.SelectionBackColor = System.Drawing.Color.DimGray;
                 }
-                row.Cells[_dgvSearchPerson.Columns.IndexOf(ColumnName)].Value = user.FirstName != null ? user.FirstName.Firstname : string.Empty;
-                row.Cells[_dgvSearchPerson.Columns.IndexOf(ColumnFamilyName)].Value = user.FamilyName;
+                row.Cells[_dgvSearchPerson.Columns.IndexOf(ColumnName)].Value = user.FirstName != null ? user.FirstName.Value : string.Empty;
+                row.Cells[_dgvSearchPerson.Columns.IndexOf(ColumnFamilyName)].Value = user.Name;
                 row.Cells[_dgvSearchPerson.Columns.IndexOf(ColumnId)].Value = user.Id;
                 row.Cells[_dgvSearchPerson.Columns.IndexOf(ColumnNationality)].Value = user.Nationality;
                 row.Cells[_dgvSearchPerson.Columns.IndexOf(ColumnComment)].Value = user.Comment;
                 row.Cells[_dgvSearchPerson.Columns.IndexOf(ColumnMail)].Value = user.Mail;
                 switch (user.Gender)
                 {
-                    case Person.GENDER.MALE:
+                    case Gender.MALE:
                         row.Cells[_dgvSearchPerson.Columns.IndexOf(ColumnGender)].Value = Tools4Libraries.Resources.ResourceIconSet16Default.male;
                         row.Cells[_dgvSearchPerson.Columns.IndexOf(ColumnGender)].Tag = "MALE";
                         break;
-                    case Person.GENDER.FEMAL:
+                    case Gender.FEMAL:
                         row.Cells[_dgvSearchPerson.Columns.IndexOf(ColumnGender)].Value = Tools4Libraries.Resources.ResourceIconSet16Default.female;
                         row.Cells[_dgvSearchPerson.Columns.IndexOf(ColumnGender)].Tag = "FEMAL";
                         break;
-                    case Person.GENDER.OTHER:
+                    case Gender.OTHER:
                         row.Cells[_dgvSearchPerson.Columns.IndexOf(ColumnGender)].Value = Tools4Libraries.Resources.ResourceIconSet16Default.rainbow;
                         row.Cells[_dgvSearchPerson.Columns.IndexOf(ColumnGender)].Tag = "OTHER";
                         break;
-                    case Person.GENDER.UNKNOW:
+                    case Gender.UNKNOW:
                         row.Cells[_dgvSearchPerson.Columns.IndexOf(ColumnGender)].Value = Tools4Libraries.Resources.ResourceIconSet16Default.question;
                         row.Cells[_dgvSearchPerson.Columns.IndexOf(ColumnGender)].Tag = "UNKNOW";
                         break;
@@ -505,8 +503,8 @@ namespace Droid_People
         {
             if (_currentPerson != null)
             {
-                textBoxFamilyName.Text = _currentPerson.FamilyName;
-                textBoxFirstname.Text = _currentPerson.FirstName.Firstname;
+                textBoxFamilyName.Text = _currentPerson.Name;
+                textBoxFirstname.Text = _currentPerson.FirstName.Value;
                 comboBoxNationality.Text = _currentPerson.Nationality;
                 comboBoxGender.Text = _currentPerson.Gender.ToString();
             }

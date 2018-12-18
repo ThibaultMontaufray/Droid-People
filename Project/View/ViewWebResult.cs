@@ -9,21 +9,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tools4Libraries;
 
-namespace Droid_People
+namespace Droid.People
 {
     public partial class ViewWebResult : UserControlCustom
     {
         #region Attribute
-        public override event UserControlCustomEventHandler HeightChanged;
-
-        private Interface_people _intPeo;
+        private InterfacePeople _intPeo;
         #endregion
 
         #region Properties
         #endregion
 
         #region Constructor
-        public ViewWebResult(Interface_people intPeo)
+        public ViewWebResult(InterfacePeople intPeo)
         {
             _intPeo = intPeo;
             InitializeComponent();
@@ -46,7 +44,7 @@ namespace Droid_People
             comboBoxPersons.Items.Clear();
             foreach (Person person in _intPeo.Persons)
             {
-                persoText = person.FirstName.Firstname + " " + person.FamilyName;
+                persoText = person.FirstName.Value + " " + person.Name;
                 if (!comboBoxPersons.Items.Contains(persoText)) { comboBoxPersons.Items.Add(persoText); }
             }
         }
@@ -70,7 +68,7 @@ namespace Droid_People
             string persoText;
             foreach (Person person in _intPeo.Persons)
             {
-                persoText = person.FirstName.Firstname + " " + person.FamilyName;
+                persoText = person.FirstName.Value + " " + person.Name;
                 if (comboBoxPersons.SelectedItem.Equals(persoText))
                 {
                     _intPeo.CurrentPerson = person;
@@ -81,7 +79,7 @@ namespace Droid_People
         private void Analyse()
         {
             SelectCurrentPerson();
-            Person p = PeopleControler.Search(_intPeo.CurrentPerson.FirstName.Firstname, _intPeo.CurrentPerson.FamilyName);
+            Person p = PeopleControler.Search(_intPeo.CurrentPerson.FirstName.Value, _intPeo.CurrentPerson.Name);
 
             if (p != null)
             {
@@ -98,7 +96,7 @@ namespace Droid_People
         {
             if (p.FirstName != null)
             { 
-                labelFirstName.Text = p.FirstName.Firstname;
+                labelFirstName.Text = p.FirstName.Value;
                 labelCulture.Text = p.FirstName.Culture;
                 labelDescription.Text = string.IsNullOrEmpty(p.FirstName.Description) ? string.Empty : p.FirstName.Description.Replace("|", ", ");
                 labelOrigine.Text = p.FirstName.Origin;

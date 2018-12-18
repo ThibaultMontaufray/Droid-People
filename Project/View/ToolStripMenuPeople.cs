@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tools4Libraries;
 
-namespace Droid_People
+namespace Droid.People
 {
     public class ToolStripMenuPeople : RibbonTab
     {

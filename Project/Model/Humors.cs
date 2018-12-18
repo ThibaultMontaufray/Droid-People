@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Droid_People
+namespace Droid.People
 {
     public class Humors
     {

@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tools4Libraries;
-using Droid_Geography;
+using Droid.Geography;
 
-namespace Droid_People
+namespace Droid.People
 {
     public delegate void ViewWelcomeEventHandler(object o);
     public partial class ViewWelcome : UserControlCustom
@@ -19,12 +19,12 @@ namespace Droid_People
         public event ViewUserEventHandler UserDetailRequested;
 
         private Dictionary<string, int> _nationalities;
-        private Interface_people _intPeo;
+        private InterfacePeople _intPeo;
         private int[] _ages = new int[] { 0, 10, 20, 30, 40, 50, 60, 70, 80, 999 };
         #endregion
 
         #region Properties
-        public Interface_people InterfacePeople
+        public InterfacePeople InterfacePeople
         {
             get { return _intPeo; }
             set { _intPeo = value; }
@@ -37,7 +37,7 @@ namespace Droid_People
             InitializeComponent();
             Init();
         }
-        public ViewWelcome(Interface_people intPeo)
+        public ViewWelcome(InterfacePeople intPeo)
         {
             _intPeo = intPeo;
             InitializeComponent();
@@ -116,7 +116,7 @@ namespace Droid_People
                     age = Convert.ToInt16((DateTime.Now - person.Birthday).Days / 365.25);
                     if (person.Birthday != DateTime.MinValue)
                     {
-                        if (person.Gender == Person.GENDER.MALE)
+                        if (person.Gender == Gender.MALE)
                         {
                             for (int i = 0; i < _ages.Length; i++)
                             {
@@ -127,7 +127,7 @@ namespace Droid_People
                                 }
                             }
                         }
-                        if (person.Gender == Person.GENDER.FEMAL)
+                        if (person.Gender == Gender.FEMAL)
                         {
                             for (int i = 0; i < _ages.Length; i++)
                             {
@@ -181,7 +181,7 @@ namespace Droid_People
         }
         private void GetUserMask()
         {
-            //Image img = Droid_Image.Interface_image.ACTION_138_apply_mask(Image.FromFile(@"D:\Images\tmp\montagne.jpg"), Image.FromFile(@"D:\Images\tmp\mask.png"));
+            //Image img = Droid.Image.Interface_image.ACTION_138_apply_mask(Image.FromFile(@"D:\Images\tmp\montagne.jpg"), Image.FromFile(@"D:\Images\tmp\mask.png"));
             //img.Save(@"D:\Images\tmp\montagneRound.jpg");
         }
         private void UserList_PersonDetailRequested(Person p)

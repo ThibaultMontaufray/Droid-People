@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using System.IO;
 using Tools4Libraries;
 
-namespace Droid_People
+namespace Droid.People
 {
     public partial class DocumentPreview : UserControl
     {
@@ -57,7 +57,7 @@ namespace Droid_People
                 else if (Path.GetExtension(_currentDocument) != null && _extentionImages.Contains(Path.GetExtension(_currentDocument).ToLower().Replace(".", string.Empty)))
                 {
                     pictureBoxPreview.Visible = true;
-                    pictureBoxPreview.BackgroundImage = Image.FromFile(_currentDocument);
+                    pictureBoxPreview.BackgroundImage = System.Drawing.Image.FromFile(_currentDocument);
                 }
                 else
                 {

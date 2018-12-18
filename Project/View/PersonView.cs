@@ -8,18 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using Droid_Geography;
+using Droid.Geography;
+using Tools4Libraries;
 
-namespace Droid_People
+namespace Droid.People
 {
     public delegate void PersonViewEventHandler(object o);
-    public partial class PersonView : UserControl
+    public partial class PersonView : UserControlCustom
     {
         #region Attribute
         public event PersonViewEventHandler PersonChanged;
 
         private bool _editionMode = false;
-        private Interface_people _intPeo;
+        private InterfacePeople _intPeo;
         private WorldMap _worldMap;
         #endregion
 
@@ -50,7 +51,7 @@ namespace Droid_People
         #endregion
 
         #region Constructor
-        public PersonView(Interface_people intPeo)
+        public PersonView(InterfacePeople intPeo)
         {
             _intPeo = intPeo;
 
@@ -60,7 +61,7 @@ namespace Droid_People
         #endregion
 
         #region Methods public
-        public void RefreshData()
+        public override void RefreshData()
         {
             if (_intPeo.CurrentPerson != null)
             {
@@ -74,14 +75,14 @@ namespace Droid_People
                     pictureBox1.Tag = "Default";
                     switch (_intPeo.CurrentPerson.Gender)
                     {
-                        case Person.GENDER.MALE:
+                        case Gender.MALE:
                             pictureBox1.BackgroundImage = Properties.Resources.shadow_man;
                             break;
-                        case Person.GENDER.FEMAL:
+                        case Gender.FEMAL:
                             pictureBox1.BackgroundImage = Properties.Resources.shadow_woman;
                             break;
-                        case Person.GENDER.OTHER:
-                        case Person.GENDER.UNKNOW:
+                        case Gender.OTHER:
+                        case Gender.UNKNOW:
                         default:
                             pictureBox1.BackgroundImage = Properties.Resources.shadow_backpacker;
                             break;
@@ -157,8 +158,8 @@ namespace Droid_People
                 if (_intPeo.CurrentPerson.Documents.Count > 3) { documentIcon4.CurrentDocument = Path.Combine(_intPeo.WorkingDirectory, _intPeo.CurrentPerson.Id, _intPeo.CurrentPerson.Documents[3]); }
                 else documentIcon4.CurrentDocument = null;
 
-                labelFamilyName.Text = string.IsNullOrEmpty(_intPeo.CurrentPerson.FamilyName) ? "_______" : _intPeo.CurrentPerson.FamilyName.ToUpper();
-                labelFirstName.Text = (_intPeo.CurrentPerson.FirstName == null || string.IsNullOrEmpty(_intPeo.CurrentPerson.FirstName.Firstname)) ? "_______" : _intPeo.CurrentPerson.FirstName.Firstname.Substring(0, 1).ToUpper() + _intPeo.CurrentPerson.FirstName.Firstname.Substring(1, _intPeo.CurrentPerson.FirstName.Firstname.Length - 1).ToLower();
+                labelFamilyName.Text = string.IsNullOrEmpty(_intPeo.CurrentPerson.Name) ? "_______" : _intPeo.CurrentPerson.Name.ToUpper();
+                labelFirstName.Text = (_intPeo.CurrentPerson.FirstName == null || string.IsNullOrEmpty(_intPeo.CurrentPerson.FirstName.Value)) ? "_______" : _intPeo.CurrentPerson.FirstName.Value.Substring(0, 1).ToUpper() + _intPeo.CurrentPerson.FirstName.Value.Substring(1, _intPeo.CurrentPerson.FirstName.Value.Length - 1).ToLower();
                 labelGender.Text = _intPeo.CurrentPerson.Gender.ToString().ToLower();
                 labelNationality.Text = _intPeo.CurrentPerson.Nationality;
                 labelBirthday.Text = _intPeo.CurrentPerson.Birthday.Date.ToShortDateString();
@@ -241,7 +242,7 @@ namespace Droid_People
         private void InitComboBox()
         {
             comboBoxGender.Items.Clear();
-            foreach (var item in Enum.GetValues(typeof(Person.GENDER)))
+            foreach (var item in Enum.GetValues(typeof(Gender)))
             {
                 comboBoxGender.Items.Add(item.ToString());
             }
@@ -336,10 +337,10 @@ namespace Droid_People
         private void SavePerson()
         {
             _intPeo.CurrentPerson.FirstName = PeopleControler.GetFirstName(textBoxFirstname.Text);
-            _intPeo.CurrentPerson.FamilyName = textBoxName.Text;
+            _intPeo.CurrentPerson.Name = textBoxName.Text;
             //_intPeo.CurrentPerson.Activities
             _intPeo.CurrentPerson.Nationality = comboBoxNationality.Text;
-            _intPeo.CurrentPerson.Gender = (Person.GENDER)Enum.Parse(typeof(Person.GENDER), comboBoxGender.Text.ToUpper());
+            _intPeo.CurrentPerson.Gender = (Gender)Enum.Parse(typeof(Gender), comboBoxGender.Text.ToUpper());
             _intPeo.CurrentPerson.Birthday = dateTimePickerBirthday.Value;
             _intPeo.CurrentPerson.Nickname = textBoxNickName.Text;
             _intPeo.CurrentPerson.Mail = textBoxMail.Text;
@@ -350,7 +351,7 @@ namespace Droid_People
             if (pictureBox1.BackgroundImage != null && !"Default".Equals(pictureBox1.Tag)) _intPeo.CurrentPerson.Pictures.Add(pictureBox1.BackgroundImage);
             if (pictureBox2.BackgroundImage != null && !"Default".Equals(pictureBox2.Tag))
             {
-                Image img = pictureBox2.BackgroundImage;
+                System.Drawing.Image img = pictureBox2.BackgroundImage;
                 MemoryStream ms = new MemoryStream();
                 img.Save(ms, img.RawFormat);
                 byte[] array = ms.ToArray();
@@ -358,7 +359,7 @@ namespace Droid_People
             } 
             if (pictureBox3.BackgroundImage != null && !"Default".Equals(pictureBox3.Tag))
             {
-                Image img = pictureBox3.BackgroundImage;
+                System.Drawing.Image img = pictureBox3.BackgroundImage;
                 MemoryStream ms = new MemoryStream();
                 img.Save(ms, img.RawFormat);
                 byte[] array = ms.ToArray();
@@ -366,7 +367,7 @@ namespace Droid_People
             } 
             if (pictureBox4.BackgroundImage != null && !"Default".Equals(pictureBox4.Tag))
             {
-                Image img = pictureBox4.BackgroundImage;
+                System.Drawing.Image img = pictureBox4.BackgroundImage;
                 MemoryStream ms = new MemoryStream();
                 img.Save(ms, img.RawFormat);
                 byte[] array = ms.ToArray();
@@ -374,7 +375,7 @@ namespace Droid_People
             } 
             if (pictureBox5.BackgroundImage != null && !"Default".Equals(pictureBox5.Tag))
             {
-                Image img = pictureBox5.BackgroundImage;
+                System.Drawing.Image img = pictureBox5.BackgroundImage;
                 MemoryStream ms = new MemoryStream();
                 img.Save(ms, img.RawFormat);
                 byte[] array = ms.ToArray();
@@ -382,7 +383,7 @@ namespace Droid_People
             } 
             if (pictureBox6.BackgroundImage != null && !"Default".Equals(pictureBox6.Tag))
             {
-                Image img = pictureBox6.BackgroundImage;
+                System.Drawing.Image img = pictureBox6.BackgroundImage;
                 MemoryStream ms = new MemoryStream();
                 img.Save(ms, img.RawFormat);
                 byte[] array = ms.ToArray();
@@ -390,7 +391,7 @@ namespace Droid_People
             }
             if (pictureBox7.BackgroundImage != null && !"Default".Equals(pictureBox7.Tag))
             {
-                Image img = pictureBox7.BackgroundImage;
+                System.Drawing.Image img = pictureBox7.BackgroundImage;
                 MemoryStream ms = new MemoryStream();
                 img.Save(ms, img.RawFormat);
                 byte[] array = ms.ToArray();
@@ -469,14 +470,14 @@ namespace Droid_People
         {
             switch (_intPeo.CurrentPerson.Gender)
             {
-                case Person.GENDER.MALE:
+                case Gender.MALE:
                     pictureBox1.BackgroundImage = Properties.Resources.shadow_man;
                     break;
-                case Person.GENDER.FEMAL:
+                case Gender.FEMAL:
                     pictureBox1.BackgroundImage = Properties.Resources.shadow_woman;
                     break;
-                case Person.GENDER.OTHER:
-                case Person.GENDER.UNKNOW:
+                case Gender.OTHER:
+                case Gender.UNKNOW:
                 default:
                     pictureBox1.BackgroundImage = Properties.Resources.shadow_backpacker;
                     break;

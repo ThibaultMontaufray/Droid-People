@@ -1,4 +1,4 @@
-﻿namespace Droid_People
+﻿namespace Droid.People
 {
     partial class ViewWelcome
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Droid_Geography.WorldMap worldMap1 = new Droid_Geography.WorldMap();
+            //Droid.Geography.WorldMap worldMap1 = new Droid.Geography.WorldMap();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewWelcome));
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -41,7 +41,7 @@
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.worldMapView = new Droid_Geography.WorldMapView();
+            this.worldMapView = new Droid.Geography.WorldMapView();
             this.panelCountries = new System.Windows.Forms.Panel();
             this.chartCountries = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.labelName = new System.Windows.Forms.Label();
@@ -51,7 +51,7 @@
             this.labelPyramid = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chartAgePyramid = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.userList = new Droid_People.UserList();
+            this.userList = new Droid.People.UserList();
             this.panelCountries.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartCountries)).BeginInit();
             this.panelAgePyramid.SuspendLayout();
@@ -62,19 +62,19 @@
             // 
             // worldMapView
             // 
-            this.worldMapView.BackColor = System.Drawing.Color.DimGray;
-            worldMap1.Countries = ((System.Collections.Generic.List<Droid_Geography.Country>)(resources.GetObject("worldMap1.Countries")));
-            worldMap1.CurrentCountry = null;
-            worldMap1.Mode = Droid_Geography.WorldMap.PresentationMode.POPULATION;
-            worldMap1.RunAnimation = true;
-            worldMap1.WorkingDirectory = "C:\\Users\\amost\\AppData\\Roaming\\Servodroid\\Droid-Geography";
-            worldMap1.Zoom = 1;
-            this.worldMapView.CurrentWorldMap = worldMap1;
-            this.worldMapView.Location = new System.Drawing.Point(3, 0);
-            this.worldMapView.Name = "worldMapView";
-            this.worldMapView.Size = new System.Drawing.Size(600, 400);
-            this.worldMapView.TabIndex = 0;
-            this.worldMapView.Zoom = 0;
+            //this.worldMapView.BackColor = System.Drawing.Color.DimGray;
+            //worldMap1.Countries = ((System.Collections.Generic.List<Droid.Geography.Country>)(resources.GetObject("worldMap1.Countries")));
+            //worldMap1.CurrentCountry = null;
+            //worldMap1.Mode = Droid.Geography.WorldMap.PresentationMode.POPULATION;
+            //worldMap1.RunAnimation = true;
+            //worldMap1.WorkingDirectory = "C:\\Users\\amost\\AppData\\Roaming\\Servodroid\\Droid-Geography";
+            //worldMap1.Zoom = 1;
+            //this.worldMapView.CurrentWorldMap = worldMap1;
+            //this.worldMapView.Location = new System.Drawing.Point(3, 0);
+            //this.worldMapView.Name = "worldMapView";
+            //this.worldMapView.Size = new System.Drawing.Size(600, 400);
+            //this.worldMapView.TabIndex = 0;
+            //this.worldMapView.Zoom = 0;
             // 
             // panelCountries
             // 
@@ -449,7 +449,7 @@
 
         }
         private System.Windows.Forms.Panel panelCountries;
-        private Droid_Geography.WorldMapView worldMapView;
+        private Droid.Geography.WorldMapView worldMapView;
         #endregion
 
         private System.Windows.Forms.DataVisualization.Charting.Chart chartCountries;

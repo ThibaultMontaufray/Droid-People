@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Droid_People
+namespace Droid.People
 {
     [Serializable]
     public class Activities

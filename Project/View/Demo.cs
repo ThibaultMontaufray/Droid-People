@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tools4Libraries;
 
-namespace Droid_People
+namespace Droid.People
 {
     public partial class Demo : Form
     {
@@ -16,7 +17,7 @@ namespace Droid_People
         private readonly string WORKING_DIRECTORY = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Servodroid\Droid-People";
 
         private Ribbon _ribbon;
-        private Interface_people _intPeo;
+        private InterfacePeople _intPeo;
 
         private RibbonButton _btn_open;
         private RibbonButton _btn_exit;
@@ -47,7 +48,7 @@ namespace Droid_People
         #region Methods private
         private void Init()
         {
-            _intPeo = new Interface_people(WORKING_DIRECTORY);
+            _intPeo = new InterfacePeople(WORKING_DIRECTORY);
             this.Controls.Add(_intPeo.Sheet);
 
             BuildRibbon();

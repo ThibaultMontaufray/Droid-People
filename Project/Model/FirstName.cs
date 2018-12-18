@@ -1,9 +1,9 @@
-﻿namespace Droid_People
+﻿namespace Droid.People
 {
     public class FirstName
     {
         #region Attributes
-        private string _firstname;
+        private string _value;
         private string _univers;
         private string _type;
         private string _gender;
@@ -43,17 +43,28 @@
             get { return _univers; }
             set { _univers = value; }
         }
-        public string Firstname
+        public string Value
         {
-            get { return _firstname; }
-            set { _firstname = value; }
+            get { return _value; }
+            set { _value = value; }
+        }
+        #endregion
+
+        #region Constructor
+        public FirstName()
+        {
+
+        }
+        public FirstName(string value)
+        {
+            _value = value;
         }
         #endregion
 
         #region Methods publice
         public override string ToString()
         {
-            return this.Firstname;
+            return this.Value;
         }
         #endregion
     }

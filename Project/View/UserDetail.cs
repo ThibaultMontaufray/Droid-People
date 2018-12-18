@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 
-namespace Droid_People
+namespace Droid.People
 {
     public partial class UserDetail : UserControl
     {
@@ -66,8 +66,8 @@ namespace Droid_People
                 }
 
                 labelFullName.Text = Person.GetFullName(_currentPerson);
-                labelFamilyName.Text = string.IsNullOrEmpty(_currentPerson.FamilyName) ? "_______" : _currentPerson.FamilyName;
-                labelFirstname.Text = _currentPerson.FirstName == null ? "_______" : _currentPerson.FirstName.Firstname;
+                labelFamilyName.Text = string.IsNullOrEmpty(_currentPerson.Name) ? "_______" : _currentPerson.Name;
+                labelFirstname.Text = _currentPerson.FirstName == null ? "_______" : _currentPerson.FirstName.Value;
                 labelNationality.Text = _currentPerson.Nationality == null ? "_______" : _currentPerson.Nationality;
                 labelGender.Text = _currentPerson.Gender.ToString();
                 labelActivity.Text = _currentPerson.Activities.Count == 0 ? "_______" : _currentPerson.Activities[0].Name;

@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tools4Libraries;
 
-namespace Droid_People
+namespace Droid.People
 {
     public static class PeopleControler
     {
@@ -65,9 +65,9 @@ namespace Droid_People
         {
             List<FirstName> finalFirstName = new List<FirstName>();
 
-            finalFirstName = _firstNames.Where(f => f.Firstname.ToLower().Equals(firstname.ToLower())).ToList();
+            finalFirstName = _firstNames.Where(f => f.Value.ToLower().Equals(firstname.ToLower())).ToList();
             if (finalFirstName.Count > 0) return finalFirstName.First();
-            else return new FirstName() { Firstname = firstname };
+            else return new FirstName() { Value = firstname };
         }
         #endregion
 
@@ -79,31 +79,31 @@ namespace Droid_People
             
             if (tab.Length == 2)
             {
-                firstnames = _firstNames.Where(f => f.Firstname.ToLower().Equals(tab[0].ToLower())).ToList();
+                firstnames = _firstNames.Where(f => f.Value.ToLower().Equals(tab[0].ToLower())).ToList();
                 if (!string.IsNullOrEmpty(tab[0]) && firstnames.Count > 0)
                 {
                     _currentPerson.FirstName = firstnames.First();
-                    _currentPerson.FamilyName = tab[1];
+                    _currentPerson.Name = tab[1];
                 }
                 else if (!string.IsNullOrEmpty(tab[1]))
                 {
-                    firstnames = _firstNames.Where(f => f.Firstname.ToLower().Equals(tab[1].ToLower())).ToList();
+                    firstnames = _firstNames.Where(f => f.Value.ToLower().Equals(tab[1].ToLower())).ToList();
                     if (firstnames.Count > 0)
                     {
                         _currentPerson.FirstName = firstnames.First();
-                        _currentPerson.FamilyName = tab[0];
+                        _currentPerson.Name = tab[0];
                     }
                 }
             }
         }
         private static void AnalyseKeyWorkds(string firstname, string familyname)
         {
-            _currentPerson.FamilyName = familyname;
+            _currentPerson.Name = familyname;
             List<FirstName> firstnames;
             
             if (!string.IsNullOrWhiteSpace(firstname))
             { 
-                firstnames = _firstNames.Where(f => f.Firstname.ToLower().Equals(firstname.ToLower())).ToList();
+                firstnames = _firstNames.Where(f => f.Value.ToLower().Equals(firstname.ToLower())).ToList();
                 if (!string.IsNullOrEmpty(firstname) && firstnames.Count > 0)
                 {
                     _currentPerson.FirstName = firstnames.First();
@@ -118,7 +118,7 @@ namespace Droid_People
             _firstNames = new List<FirstName>();
             
             Assembly assembly = Assembly.GetExecutingAssembly();
-            Stream objStream = assembly.GetManifestResourceStream("Droid_People.Resources.prenom.csv");
+            Stream objStream = assembly.GetManifestResourceStream("Droid.People.Resources.prenom.csv");
             StreamReader objReader = new StreamReader(objStream);
             string firstnameFile = objReader.ReadToEnd();
 
@@ -133,7 +133,7 @@ namespace Droid_People
                         {
                             Univers = tab[0],
                             Type = tab[1],
-                            Firstname = tab[2],
+                            Value = tab[2],
                             Gender = tab[3],
                             Description = tab[4],
                             Culture = tab[5],
@@ -162,7 +162,7 @@ namespace Droid_People
         }
         private static void SearchGoogle(string keyWords)
         {
-            List<string> imgUrl = Droid_web.Web.GetImages(keyWords);
+            List<string> imgUrl = Droid.Web.Web.GetImages(keyWords);
 
             for (int i = 0; i < (imgUrl.Count > 10 ? 10: imgUrl.Count); i++)
             {
@@ -174,7 +174,7 @@ namespace Droid_People
                     WebResponse webResponse = webRequest.GetResponse();
                     Stream stream = webResponse.GetResponseStream();
 
-                    Image img = Image.FromStream(stream);
+                    System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
 
                     MemoryStream ms = new MemoryStream();
                     img.Save(ms, img.RawFormat);

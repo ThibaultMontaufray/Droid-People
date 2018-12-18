@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tools4Libraries;
 
-namespace Droid_People
+namespace Droid.People
 {
     public delegate void UserTileEventHandler(Person p);
     public partial class UserTile : UserControl
@@ -65,18 +66,18 @@ namespace Droid_People
         public void LoadPerson(Person person)
         {
             _currentPerson = person;
-            Image img = person.Pictures.Count != 0 ? person.Pictures[0] : Properties.Resources.shadow_backpacker;
-            img = Droid_Image.Interface_image.ACTION_132_resize_picture(img, 60, 60);
-            pictureBoxProfil.Image = Droid_Image.Interface_image.ACTION_138_apply_mask(img);
-            labelName.Text = string.Format("{0} {1}", person.FirstName.ToString(), person.FamilyName.ToUpper());
+            System.Drawing.Image img = person.Pictures.Count != 0 ? person.Pictures[0] : Properties.Resources.shadow_backpacker;
+            img = Droid.Image.Interface_image.ACTION_132_resize_picture(img, 60, 60);
+            pictureBoxProfil.Image = Droid.Image.Interface_image.ACTION_138_apply_mask(img);
+            labelName.Text = string.Format("{0} {1}", person.FirstName.ToString(), person.Name.ToUpper());
             labelDescription.Text = person.Comment;
             labelNationality.Text = person.Nationality.ToString();
             labelAge.Text = string.Format("{0} : {1}", GetText.Text("Age"), (person.Birthday != null ? (((DateTime.Now - person.Birthday).TotalDays) / 365.25).ToString().Split(',')[0] : GetText.Text("Unknown")));
             labelActivity.Text = person.Activities.Count > 0 ? person.Activities[0].Name : string.Empty;
 
-            if (person.Gender == Person.GENDER.MALE) { pictureBoxGender.Image = imageListGender.Images[imageListGender.Images.IndexOfKey("male")]; }
-            else if (person.Gender == Person.GENDER.FEMAL) { pictureBoxGender.Image = imageListGender.Images[imageListGender.Images.IndexOfKey("femal")]; }
-            else if (person.Gender == Person.GENDER.OTHER) { pictureBoxGender.Image = imageListGender.Images[imageListGender.Images.IndexOfKey("indeterminate")]; }
+            if (person.Gender == Gender.MALE) { pictureBoxGender.Image = imageListGender.Images[imageListGender.Images.IndexOfKey("male")]; }
+            else if (person.Gender == Gender.FEMAL) { pictureBoxGender.Image = imageListGender.Images[imageListGender.Images.IndexOfKey("femal")]; }
+            else if (person.Gender == Gender.OTHER) { pictureBoxGender.Image = imageListGender.Images[imageListGender.Images.IndexOfKey("indeterminate")]; }
             else { pictureBoxGender.Image = null; }
 
             if (person.FirstName.ToString().Contains("_")) panelMask.BackgroundImage = Properties.Resources.userTileRed;

@@ -1,8 +1,10 @@
 ﻿// Log code 04 00
 
+using Droid.scheduler;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -10,44 +12,30 @@ using System.Xml;
 using System.Xml.Serialization;
 using Tools4Libraries;
 
-namespace Droid_People
+namespace Droid.People
 {
     [Serializable]
-    public class Person : ICloneable
+    public class Person : Entity
     {
-        #region Enum
-        public enum GENDER
-        {
-            MALE,
-            FEMAL,
-            OTHER,
-            UNKNOW
-        }
-        #endregion
-
         #region Attribute
-        private const int DEFAULTATTRIBUTSLEVEL = 10;
+        protected const int DEFAULTATTRIBUTSLEVEL = 10;
 
-        private Caracteristics _caracteristics;
-        private Humors _currentHumors;
-        private string _familyName;
-        private FirstName _firstname;
-        private string _nickName;
-        private DateTime _birthday;
-        private List<Person> _chiefs;
-        private List<Person> _teamMembers;
+        protected Caracteristics _caracteristics;
+        protected Humors _currentHumors;
+        protected FirstName _firstname;
+        protected string _nickName;
+        protected DateTime _birthday;
+        protected List<Person> _chiefs;
+        protected List<Person> _teamMembers;
         //private List<Image> _pictures;
-        private List<Activities> _activities;
-        private List<Project> _projects;
-        private List<Skill> _skills;
-        private string _nationality;        
-        private string _id;
-        private GENDER _gender;
-        private string _comment;
-        private string _mail;
-        private List<string> _documents;
+        protected List<Activities> _activities;
+        protected List<Project> _projects;
+        protected List<Skill> _skills;
+        protected string _nationality;
+        protected Gender _gender;
+        protected List<string> _documents;
         //private string _workingDirectory;
-        private List<string> _serializedPictures;
+        protected List<string> _serializedPictures;
         #endregion
 
         #region Properties
@@ -73,12 +61,6 @@ namespace Droid_People
         {
             get { return _firstname; }
             set { _firstname = value; }
-        }
-        [JsonProperty(PropertyName = "familyname")]
-        public string FamilyName
-        {
-            get { return _familyName; }
-            set { _familyName = value; }
         }
         [JsonProperty(PropertyName = "birthday")]
         public DateTime Birthday
@@ -106,11 +88,11 @@ namespace Droid_People
         }
         [XmlIgnore]
         [JsonIgnore]
-        public List<Image> Pictures
+        public List<System.Drawing.Image> Pictures
         {
             get
             {
-                List<Image> li = new List<Image>();
+                List<System.Drawing.Image> li = new List<System.Drawing.Image>();
                 foreach (var item in _serializedPictures)
                 {
                     if (!string.IsNullOrEmpty(item))
@@ -118,14 +100,14 @@ namespace Droid_People
                         try
                         {
                             byte[] array = Convert.FromBase64String(item);
-                            li.Add(Image.FromStream(new MemoryStream(array)));
+                            li.Add(System.Drawing.Image.FromStream(new MemoryStream(array)));
                         }
                         catch (Exception exp)
                         {
                             Log.Write("[ ERR : 0400 ] Error while converting image to string. \n\n" + exp.Message);
                         }
 
-                        //li.Add(Droid_Image.Interface_image.ACTION_137_unserialize_image(item));
+                        //li.Add(Droid.Image.Interface_image.ACTION_137_unserialize_image(item));
                     }
                 }
                 return li;
@@ -142,7 +124,7 @@ namespace Droid_People
             //            byte[] array = ms.ToArray();
             //            _serializedPictures.Add(Convert.ToBase64String(array));
 
-            //            //_serializedPictures.Add(Droid_Image.Interface_image.ACTION_136_serialize_image(item));
+            //            //_serializedPictures.Add(Droid.Image.Interface_image.ACTION_136_serialize_image(item));
             //        }
             //    }
             //}
@@ -215,35 +197,17 @@ namespace Droid_People
             //    {
             //        if (!string.IsNullOrEmpty(item))
             //        { 
-            //            li.Add(Droid_Image.Interface_image.ACTION_137_unserialize_image(item));
+            //            li.Add(Droid.Image.Interface_image.ACTION_137_unserialize_image(item));
             //        }
             //    }
             //    _pictures = li;
             //}
         }
-        [JsonProperty(PropertyName = "comment")]
-        public string Comment
-        {
-            get { return _comment; }
-            set { _comment = value; }
-        }
-        [JsonProperty(PropertyName = "id")]
-        public string Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
         [JsonProperty(PropertyName = "gender")]
-        public GENDER Gender
+        public Gender Gender
         {
             get { return _gender; }
             set { _gender = value; }
-        }
-        [JsonProperty(PropertyName = "mail")]
-        public string Mail
-        {
-            get { return _mail; }
-            set { _mail = value; }
         }
         [JsonProperty(PropertyName = "humors")]
         public Humors CurrentHumors
@@ -259,11 +223,11 @@ namespace Droid_People
             Random rand = new Random((int)DateTime.Now.Ticks);
             _id = string.Format("people.{0}-{1}-{2}", rand.Next(), (int)DateTime.Now.Ticks, rand.Next());
 
-            _gender = GENDER.UNKNOW;
+            _gender = Gender.UNKNOW;
             _chiefs = new List<Person>();
             _teamMembers = new List<Person>();
             _serializedPictures = new List<string>();
-            _activities = new List<Droid_People.Activities>();
+            _activities = new List<Droid.People.Activities>();
             _projects = new List<Project>();
             _skills = new List<Skill>();
             _documents = new List<string>();
@@ -289,7 +253,7 @@ namespace Droid_People
             _teamMembers = new List<Person>();
             //_pictures = new List<Image>();
             _serializedPictures = new List<string>();
-            _activities = new List<Droid_People.Activities>();
+            _activities = new List<Droid.People.Activities>();
             _projects = new List<Project>();
             _skills = new List<Skill>();
             _documents = new List<string>();
@@ -298,13 +262,13 @@ namespace Droid_People
 
             LoadPerson(pathFile);
         }
-        public Person(string id, List<string[]> dumpDatabaseInfo, List<string[]> dumpDatabaseAttributs) : base()
+        public Person(string id, DataTable dumpDatabaseInfo, DataTable dumpDatabaseAttributs) : base()
         {
-            _gender = GENDER.UNKNOW;
+            _gender = Gender.UNKNOW;
             _chiefs = new List<Person>();
             _teamMembers = new List<Person>();
             _serializedPictures = new List<string>();
-            _activities = new List<Droid_People.Activities>();
+            _activities = new List<Droid.People.Activities>();
             _projects = new List<Project>();
             _skills = new List<Skill>();
             _documents = new List<string>();
@@ -318,7 +282,7 @@ namespace Droid_People
         #endregion
 
         #region Methods public
-        public object Clone()
+        public new object Clone()
         {
             Person p = new Person();
             p._activities = _activities;
@@ -326,7 +290,7 @@ namespace Droid_People
             p._chiefs = _chiefs;
             p._comment = _comment;
             p._documents = _documents;
-            p._familyName = _familyName;
+            p._name = _name;
             p._firstname = _firstname;
             p._gender = _gender;
             p._id = _id;
@@ -363,7 +327,7 @@ namespace Droid_People
         }
         public override string ToString()
         {
-            return string.Format("{0} {1}", (_firstname != null && !string.IsNullOrEmpty(_firstname.Firstname)) ? _firstname.Firstname : "_______", !string.IsNullOrEmpty(_familyName) ? _familyName.ToUpper() : "_______");
+            return string.Format("{0} {1}", (_firstname != null && !string.IsNullOrEmpty(_firstname.Value)) ? _firstname.Value : "_______", !string.IsNullOrEmpty(_name) ? _name.ToUpper() : "_______");
         }
         public void Save(string path)
         {
@@ -390,6 +354,10 @@ namespace Droid_People
             _documents.Remove(Path.GetFileName(document));
             Save(workingDirectory);
         }
+        public string GetName()
+        {
+            return string.Format("{0} {1}", _name.ToUpper(), _firstname.Value.Substring(0, 1).ToUpper() + _firstname.Value.Substring(1, _firstname.Value.Length - 1).ToLower());
+        }
 
         public static Person GetUserByText(object o, List<Person> persons)
         {
@@ -415,9 +383,9 @@ namespace Droid_People
         {
             string fullName = string.Empty;
 
-            if (!string.IsNullOrEmpty(person.FamilyName) && !string.IsNullOrEmpty(person.FirstName.Firstname)) { fullName = person.FirstName.Firstname.Substring(0, 1).ToUpper() + person.FirstName.Firstname.Substring(1, person.FirstName.Firstname.Length - 1).ToLower() + " " + person.FamilyName.ToUpper(); }
-            else if (string.IsNullOrEmpty(person.FamilyName) && !string.IsNullOrEmpty(person.FirstName.Firstname)) { fullName = person.FamilyName.ToUpper(); }
-            else if (!string.IsNullOrEmpty(person.FamilyName) && string.IsNullOrEmpty(person.FirstName.Firstname)) { fullName = person.FirstName.Firstname.Substring(0, 1).ToUpper() + person.FirstName.Firstname.Substring(1, person.FirstName.Firstname.Length - 1).ToLower(); }
+            if (!string.IsNullOrEmpty(person.Name) && !string.IsNullOrEmpty(person.FirstName.Value)) { fullName = person.FirstName.Value.Substring(0, 1).ToUpper() + person.FirstName.Value.Substring(1, person.FirstName.Value.Length - 1).ToLower() + " " + person.Name.ToUpper(); }
+            else if (string.IsNullOrEmpty(person.Name) && !string.IsNullOrEmpty(person.FirstName.Value)) { fullName = person.Name.ToUpper(); }
+            else if (!string.IsNullOrEmpty(person.Name) && string.IsNullOrEmpty(person.FirstName.Value)) { fullName = person.FirstName.Value.Substring(0, 1).ToUpper() + person.FirstName.Value.Substring(1, person.FirstName.Value.Length - 1).ToLower(); }
             else { fullName = "UNKNOW PERSON"; }
 
             return fullName;
@@ -448,7 +416,7 @@ namespace Droid_People
             target._chiefs = source._chiefs;
             target._comment = source._comment;
             target._documents = source._documents;
-            target._familyName = source._familyName;
+            target._name = source._name;
             target._firstname = source._firstname;
             target._gender = source._gender;
             target._id = source._id;
@@ -516,86 +484,86 @@ namespace Droid_People
                 }
             }
         }
-        private void LoadAttributs(List<string[]> attributs)
+        private void LoadAttributs(DataTable attributs)
         {
-            foreach (string[] row in attributs)
+            foreach (DataRow row in attributs.Rows)
             {
-                switch (row[0].ToUpper())
+                switch (row[0].ToString().ToUpper())
                 {
                     case "PERCEPTION":
-                        _caracteristics.Perception = int.Parse(row[1]);
+                        _caracteristics.Perception = int.Parse(row[1].ToString());
                         break;
                     case "FRANCHISE":
-                        _caracteristics.Franchise = int.Parse(row[1]);
+                        _caracteristics.Franchise = int.Parse(row[1].ToString());
                         break;
                     case "VIVACITE":
-                        _caracteristics.Vivacite = int.Parse(row[1]);
+                        _caracteristics.Vivacite = int.Parse(row[1].ToString());
                         break;
                     case "COORDINATION":
-                        _caracteristics.Coordination = int.Parse(row[1]);
+                        _caracteristics.Coordination = int.Parse(row[1].ToString());
                         break;
                     case "HUMILITE":
-                        _caracteristics.Humilite = int.Parse(row[1]);
+                        _caracteristics.Humilite = int.Parse(row[1].ToString());
                         break;
                     case "CRUALITE":
-                        _caracteristics.Crualite = int.Parse(row[1]);
+                        _caracteristics.Crualite = int.Parse(row[1].ToString());
                         break;
                     case "INSTINCT_DE_SURVIE":
-                        _caracteristics.Instinct_de_survie = int.Parse(row[1]);
+                        _caracteristics.Instinct_de_survie = int.Parse(row[1].ToString());
                         break;
                     case "PATIENCE":
-                        _caracteristics.Patience = int.Parse(row[1]);
+                        _caracteristics.Patience = int.Parse(row[1].ToString());
                         break;
                     case "DETERMINATION":
-                        _caracteristics.Determination = int.Parse(row[1]);
+                        _caracteristics.Determination = int.Parse(row[1].ToString());
                         break;
                     case "IMAGINATION":
-                        _caracteristics.Imagination = int.Parse(row[1]);
+                        _caracteristics.Imagination = int.Parse(row[1].ToString());
                         break;
                     case "CURIOSITE":
-                        _caracteristics.Curiosite = int.Parse(row[1]);
+                        _caracteristics.Curiosite = int.Parse(row[1].ToString());
                         break;
                     case "AGRESSIVITE":
-                        _caracteristics.Agressivite = int.Parse(row[1]);
+                        _caracteristics.Agressivite = int.Parse(row[1].ToString());
                         break;
                     case "LOYAUTE":
-                        _caracteristics.Loyaute = int.Parse(row[1]);
+                        _caracteristics.Loyaute = int.Parse(row[1].ToString());
                         break;
                     case "EMPATHIE":
-                        _caracteristics.Empathie = int.Parse(row[1]);
+                        _caracteristics.Empathie = int.Parse(row[1].ToString());
                         break;
                     case "TENACITE":
-                        _caracteristics.Tenacite = int.Parse(row[1]);
+                        _caracteristics.Tenacite = int.Parse(row[1].ToString());
                         break;
                     case "COURAGE":
-                        _caracteristics.Courage = int.Parse(row[1]);
+                        _caracteristics.Courage = int.Parse(row[1].ToString());
                         break;
                     case "SENSUALITE":
-                        _caracteristics.Sensualite = int.Parse(row[1]);
+                        _caracteristics.Sensualite = int.Parse(row[1].ToString());
                         break;
                     case "CHARME":
-                        _caracteristics.Charme = int.Parse(row[1]);
+                        _caracteristics.Charme = int.Parse(row[1].ToString());
                         break;
                     case "HUMOUR":
-                        _caracteristics.Perception = int.Parse(row[1]);
+                        _caracteristics.Perception = int.Parse(row[1].ToString());
                         break;
                 }
             }
         }
-        private void LoadInformation(List<string[]> info)
+        private void LoadInformation(DataTable info)
         {
-            foreach (string[] row in info)
+            foreach (DataRow row in info.Rows)
             {
-                switch (row[0].ToUpper())
+                switch (row[0].ToString().ToUpper())
                 {
                     case "NOM":
-                        _familyName = row[1];
+                        _name = row[1].ToString();
                         break;
                     case "PRENOM":
-                        _firstname.Firstname = row[1];
+                        _firstname.Value = row[1].ToString();
                         break;
                     case "NATIONALITE":
-                        _nationality = row[1];
+                        _nationality = row[1].ToString();
                         break;
                 }
             }

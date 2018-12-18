@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Droid_People</id>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <title>Droid_People</title>
     <authors>Thibault MONTAUFRAY</authors>
     <owners>Servodroid</owners>
@@ -26,7 +26,7 @@
 			<dependency id="OpenTK.GLControl" version="1.1.2349.61993" />
 			<dependency id="QRCoder" version="1.1.7" />
 			<dependency id="SampleDependency" version="1.0.0" />
-			<dependency id="Tools4Libraries" version="1.0.17" />
+			<dependency id="Tools4Libraries" version="1.0.19" />
 			<dependency id="ZedGraph" version="5.1.7" />
 			<dependency id="ZXing" version="2.1.1" />
 		</group>

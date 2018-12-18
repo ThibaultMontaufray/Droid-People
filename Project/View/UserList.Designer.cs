@@ -1,4 +1,4 @@
-﻿namespace Droid_People
+﻿namespace Droid.People
 {
     partial class UserList
     {
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this._panelScrollable = new Tools4Libraries.PanelScrollable();
-            this.sliderTrackBar = new Tools4Libraries.Slider.SliderTrackBar();
+            this._panelScrollable = new Tools4Libraries.PanelScrollableCustom();
+            this.sliderTrackBar = new Tools.Slider.SliderTrackBar();
             this.SuspendLayout();
             // 
             // _panelScrollable
@@ -64,7 +64,7 @@
             this.sliderTrackBar.Maximum = 300;
             this.sliderTrackBar.Name = "sliderTrackBar";
             this.sliderTrackBar.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.sliderTrackBar.ScaleType = Tools4Libraries.Slider.SliderTrackBar.SliderTrackBarScaleType.None;
+            this.sliderTrackBar.ScaleType = Tools.Slider.SliderTrackBar.SliderTrackBarScaleType.None;
             this.sliderTrackBar.Size = new System.Drawing.Size(16, 683);
             this.sliderTrackBar.SmallChange = 1;
             this.sliderTrackBar.TabIndex = 0;
@@ -72,7 +72,7 @@
             this.sliderTrackBar.TickSpacing = 10;
             this.sliderTrackBar.TickWidth = 10;
             this.sliderTrackBar.UseSeeking = false;
-            this.sliderTrackBar.ValueChanged += new Tools4Libraries.Slider.SliderTrackBar.ValueChangedDelegate(this.sliderTrackBar_ValueChanged);
+            this.sliderTrackBar.ValueChanged += new Tools.Slider.SliderTrackBar.ValueChangedDelegate(this.sliderTrackBar_ValueChanged);
             // 
             // UserList
             // 
@@ -86,6 +86,6 @@
         }
         #endregion
 
-        private Tools4Libraries.Slider.SliderTrackBar sliderTrackBar;
+        private Tools.Slider.SliderTrackBar sliderTrackBar;
     }
 }
