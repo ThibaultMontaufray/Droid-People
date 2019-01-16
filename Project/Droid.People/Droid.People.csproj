@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.0;net461</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>1.0.3</Version>
+    <Authors>Thibault MONTAUFRAY</Authors>
+    <Company>Servodroid</Company>
+    <Description>Manage user for applications. Can scan internet to have some more details</Description>
+    <Copyright>2017 - 2019</Copyright>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/ThibaultMontaufray/Tools4Libraries/master/License</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ThibaultMontaufray/Droid-People</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ThibaultMontaufray/Droid-People</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageIconUrl>https://raw.githubusercontent.com/ThibaultMontaufray/Tools4Libraries/master/ManagersDevComponents/servodroidIconColor.png</PackageIconUrl>
+    <PackageTags>Servodroid people google image contact person</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\jquery-jvectormap.css" />
+    <None Remove="Resources\jquery-jvectormap.js" />
+    <None Remove="Resources\prenom.csv" />
+    <None Remove="Resources\shadow_woman.png" />
+    <None Remove="Scripts\jquery-2.1.1.intellisense.js" />
+    <None Remove="Scripts\jquery-2.1.1.js" />
+    <None Remove="Scripts\jquery-2.1.1.min.js" />
+    <None Remove="Scripts\nugetexample.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\jquery-jvectormap.css" />
+    <Content Include="Resources\jquery-jvectormap.js" />
+    <Content Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\nugetexample.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\prenom.csv" />
+    <EmbeddedResource Include="Resources\shadow_woman.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Droid.Image" Version="1.0.3" />
+    <PackageReference Include="Droid.Scheduler" Version="1.0.1" />
+    <PackageReference Include="Droid.Web" Version="1.0.6" />
+    <PackageReference Include="Facebook" Version="7.0.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Tools.Utilities" Version="1.0.23" />
+  </ItemGroup>
+
+</Project>
