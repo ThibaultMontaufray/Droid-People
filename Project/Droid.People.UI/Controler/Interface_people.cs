@@ -5,8 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Tools.Utilities.UI;
+using Droid.People;
 
-namespace Droid.People
+namespace Droid.People.UI
 {
     public class InterfacePeople : GPInterfaceUI
     {

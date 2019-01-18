@@ -3,9 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using Tools.Utilities;
 using Tools.Utilities.UI;
 
-namespace Droid.People
+namespace Droid.People.UI
 {
     public delegate void ViewUserEventHandler(object o);
     public class ViewUserSearch : UserControlCustom

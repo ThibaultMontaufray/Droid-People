@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Tools.Utilities;
 using Tools.Utilities.UI;
 
-namespace Droid.People
+namespace Droid.People.UI
 {
     public delegate void UserListEventHandler(Person p);
     public partial class UserList : UserControl

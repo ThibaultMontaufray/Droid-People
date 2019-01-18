@@ -11,7 +11,7 @@ using Tools.Utilities.UI;
 using Droid.Geography;
 using Tools.Utilities;
 
-namespace Droid.People
+namespace Droid.People.UI
 {
     public delegate void ViewWelcomeEventHandler(object o);
     public partial class ViewWelcome : UserControlCustom

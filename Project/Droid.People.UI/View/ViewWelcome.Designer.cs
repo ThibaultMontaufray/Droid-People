@@ -1,4 +1,4 @@
-﻿namespace Droid.People
+﻿namespace Droid.People.UI
 {
     partial class ViewWelcome
     {
@@ -41,7 +41,7 @@
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.worldMapView = new Droid.Geography.WorldMapView();
+            this.worldMapView = new Droid.Geography.UI.WorldMapView();
             this.panelCountries = new System.Windows.Forms.Panel();
             this.chartCountries = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.labelName = new System.Windows.Forms.Label();
@@ -51,7 +51,7 @@
             this.labelPyramid = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chartAgePyramid = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.userList = new Droid.People.UserList();
+            this.userList = new Droid.People.UI.UserList();
             this.panelCountries.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartCountries)).BeginInit();
             this.panelAgePyramid.SuspendLayout();
@@ -449,7 +449,7 @@
 
         }
         private System.Windows.Forms.Panel panelCountries;
-        private Droid.Geography.WorldMapView worldMapView;
+        private Droid.Geography.UI.WorldMapView worldMapView;
         #endregion
 
         private System.Windows.Forms.DataVisualization.Charting.Chart chartCountries;

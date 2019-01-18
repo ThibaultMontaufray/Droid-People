@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tools.Utilities;
 
-namespace Droid.People
+namespace Droid.People.UI
 {
     public delegate void UserTileEventHandler(Person p);
     public partial class UserTile : UserControl
@@ -66,7 +66,7 @@ namespace Droid.People
         public void LoadPerson(Person person)
         {
             _currentPerson = person;
-            System.Drawing.Image img = person.Pictures.Count != 0 ? person.Pictures[0] : Properties.Resources.shadow_backpacker;
+            Bitmap img = new Bitmap(person.Pictures.Count != 0 ? person.Pictures[0] : Properties.Resources.shadow_backpacker);
             img = Droid.Image.Interface_image.ACTION_132_resize_picture(img, 60, 60);
             pictureBoxProfil.Image = Droid.Image.Interface_image.ACTION_138_apply_mask(img);
             labelName.Text = string.Format("{0} {1}", person.FirstName.ToString(), person.Name.ToUpper());

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using Droid.Geography;
 using Tools.Utilities;
 using Tools.Utilities.UI;
+using Droid.Geography;
 
-namespace Droid.People
+namespace Droid.People.UI
 {
     public delegate void PersonViewEventHandler(object o);
     public partial class PersonView : UserControlCustom
@@ -22,7 +22,7 @@ namespace Droid.People
 
         private bool _editionMode = false;
         private InterfacePeople _intPeo;
-        private WorldMap _worldMap;
+        private Droid.Geography.WorldMap _worldMap;
         #endregion
 
         #region Properties

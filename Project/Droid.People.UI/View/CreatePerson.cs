@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Droid.People
+namespace Droid.People.UI
 {
     public delegate void SearchPersonEventHandler();
     public partial class CreatePerson : UserControl

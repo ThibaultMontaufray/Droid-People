@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using System.IO;
 using Tools.Utilities;
 
-namespace Droid.People
+namespace Droid.People.UI
 {
     public partial class DocumentPreview : UserControl
     {

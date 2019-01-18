@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tools.Utilities.UI;
 
-namespace Droid.People
+namespace Droid.People.UI
 {
     public partial class ViewCompany : UserControlCustom
     {

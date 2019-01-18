@@ -1,4 +1,4 @@
-﻿namespace Droid.People
+﻿namespace Droid.People.UI
 {
     partial class UserList
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this._panelScrollable = new Tools.Utilities.PanelScrollableCustom();
+            this._panelScrollable = new Tools.Utilities.UI.PanelScrollableCustom();
             this.sliderTrackBar = new Tools.Slider.SliderTrackBar();
             this.SuspendLayout();
             // 

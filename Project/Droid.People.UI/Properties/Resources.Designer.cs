@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Droid.People.Properties {
+namespace Droid.People.UI.Properties {
     using System;
     
     

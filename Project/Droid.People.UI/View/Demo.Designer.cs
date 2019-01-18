@@ -1,4 +1,4 @@
-﻿namespace Droid.People
+﻿namespace Droid.People.UI
 {
     partial class Demo
     {

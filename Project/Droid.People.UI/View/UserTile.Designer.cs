@@ -1,4 +1,4 @@
-﻿namespace Droid.People
+﻿namespace Droid.People.UI
 {
     partial class UserTile
     {
@@ -194,7 +194,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.BackgroundImage = global::Droid.People.Properties.Resources.transparent2;
+            this.BackgroundImage = global::Droid.People.UI.Properties.Resources.transparent2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Controls.Add(this.panelMask);
             this.Controls.Add(this.pictureBoxProfil);

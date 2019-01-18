@@ -1,4 +1,4 @@
-﻿namespace Droid.People
+﻿namespace Droid.People.UI
 {
     partial class PersonView
     {
@@ -72,12 +72,12 @@
             this.textBoxNickName = new System.Windows.Forms.TextBox();
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.dateTimePickerBirthday = new System.Windows.Forms.DateTimePicker();
-            this.documentPreviewComment = new Droid.People.DocumentPreview();
-            this.documentPreview = new Droid.People.DocumentPreview();
-            this.documentIcon1 = new Droid.People.DocumentIcon();
-            this.documentIcon2 = new Droid.People.DocumentIcon();
-            this.documentIcon3 = new Droid.People.DocumentIcon();
-            this.documentIcon4 = new Droid.People.DocumentIcon();
+            this.documentPreviewComment = new Droid.People.UI.DocumentPreview();
+            this.documentPreview = new Droid.People.UI.DocumentPreview();
+            this.documentIcon1 = new Droid.People.UI.DocumentIcon();
+            this.documentIcon2 = new Droid.People.UI.DocumentIcon();
+            this.documentIcon3 = new Droid.People.UI.DocumentIcon();
+            this.documentIcon4 = new Droid.People.UI.DocumentIcon();
             this.comboBoxNationality = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();

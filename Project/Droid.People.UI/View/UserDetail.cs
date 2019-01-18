@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 
-namespace Droid.People
+namespace Droid.People.UI
 {
     public partial class UserDetail : UserControl
     {
